@@ -1,0 +1,10 @@
+Package: pacman
+Title: Pac-Man Residual
+Version: 0.0.0.1
+Authors@R: person("Spencer", "Riley", email = "spencer.riley@student.nmt.edu", role = c("aut", "cre"))
+Description: Reads in data and produces a Pac-Man reisudal plot based off of a regression model.
+Depends: R (>= 3.3.3), plotrix
+License: IDK
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1.9000
