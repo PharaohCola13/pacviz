@@ -12,9 +12,9 @@ pacman <- function(x,y,title){
 	xmax 	<- max(x, na.rm=TRUE)
 	newx 	<- seq(xmin, xmax, length.out=length(x))
 
-	model.0 <- lm(y~x, data=data.frame(x,y))
+	model.0 <- lm(log(y, base=exp(1))~x, data=data.frame(x,log(y, base=exp(1))))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
-	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
+	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=log(y, base=exp(1))), start=start)
 
 # residual quanities from the regression model
 	residual 	<- abs(resid(model))
@@ -24,6 +24,8 @@ pacman <- function(x,y,title){
 	rmax 		<- max(residual, na.rm=TRUE)
 	rmin 		<- min(residual, na.rm=TRUE)
 # 6 equal divisions
+	print(rmax)
+	print(rmin)
 	divs 		<- seq(round(rmin, 0), round(rmax, 0), len=6)
 	print(round(divs, 1))
 	if(divs[6] == 0){
