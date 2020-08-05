@@ -1,13 +1,18 @@
 #' Pac-Man Residual function
 #'
-#' This function will create a pac-man residual plot for for regression analysis.
-#' @param x: domain of the data y: range of the data title: title of the plot
+#'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+#' @param x: domain of the data.
+#					y: range of the data.
+#					title: title of the plot.
+# 				color1: Inner-most alternating color.
+#					color2: Alternate alternating color.
 #' @keywords regression visualization
 #' @export
 #' @examples
-#' pacman()
+## Produces the Pac-Man Residual using the Yellow-White color scheme
+#' pacman(x, y, "Yellow", "White")
 
-pacman <- function(x,y,title){
+pacman <- function(x,y,title, color1, color2){
 	xmin 	<- min(x, na.rm=TRUE)
 	xmax 	<- max(x, na.rm=TRUE)
 	newx 	<- seq(xmin, xmax, length.out=length(x))
@@ -24,10 +29,7 @@ pacman <- function(x,y,title){
 	rmax 		<- max(residual, na.rm=TRUE)
 	rmin 		<- min(residual, na.rm=TRUE)
 # 6 equal divisions
-	print(rmax)
-	print(rmin)
 	divs 		<- seq(round(rmin, 0), round(rmax, 0), len=6)
-	print(round(divs, 1))
 	if(divs[6] == 0){
 		par(oma=c(1,1,1,1), cex=0.9)
 		divs 	<- seq(round(rmin, 1), round(rmax, 1), len=5)
@@ -36,16 +38,11 @@ pacman <- function(x,y,title){
 		par(oma=c(1,1,1,1), cex=0.9)
 		n = divs[6]/10
 	}
-# Color Scheme for the rings
-	color1 <- "Yellow"
-  color2 <- "White"
 	if (divs[1] != 0){
 # Plots the residual against an angular position
 		polar.plot(0, rp.type="s",labels="", point.col="Red",
 			radial.lim=c(0, divs[5]),show.grid=TRUE, show.grid.labels=FALSE,
 			main=title, show.radial.grid=FALSE, grid.col="black")
-
-		#mtext(title, side=3,line=1)
 
 		draw.circle(0, 0, radius=divs[5], col=color1)
 		draw.circle(0, 0, radius=divs[4], col=color2)

@@ -3,16 +3,19 @@
 \name{pacman}
 \alias{pacman}
 \title{Pac-Man Residual function}
-\usage{
-pacman(x, y, title)
-}
+\usage{pacman(x, y, title, color1, color2)}
 \arguments{
-\item{x:}{domain of the data y: range of the data title: title of the plot}
+\item{x}{domain of the data.}
+\item{y}{range of the data.}
+\item{title}{title of the plot.}
+\item{color1}{Inner-most alternating color.}
+\item{color2}{Alternate alternating color.}
 }
 \description{
-This function will create a pac-man residual plot for for regression analysis.
+This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitary angular measurement.
 }
 \examples{
-pacman()
+## Produces the Pac-Man Residual using the Yellow-White color scheme
+pacman(x, y, "Yellow", "White")
 }
 \keyword{regression}
