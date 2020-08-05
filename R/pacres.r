@@ -9,10 +9,11 @@
 #' @keywords regression visualization
 #' @export
 #' @examples
-## Produces the Pac-Man Residual using the Yellow-White color scheme
-#' pacman(x, y, "Yellow", "White")
+#' Produces the Pac-Man Residual using the Yellow-White color scheme
+#' title <- "Pac-Man Residual of the Mean TPW and Temperature Model\nCondition: Clear Sky"
+#' pacres(x, y, title, "Yellow", "White")
 
-pacman <- function(x,y,title, color1, color2){
+pacres <- function(x,y,title, color1, color2){
 	xmin 	<- min(x, na.rm=TRUE)
 	xmax 	<- max(x, na.rm=TRUE)
 	newx 	<- seq(xmin, xmax, length.out=length(x))
