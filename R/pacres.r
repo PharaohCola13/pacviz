@@ -1,18 +1,15 @@
 #' Pac-Man Residual function
 #'
 #'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
-#' @param x: domain of the data.
-#					y: range of the data.
-#					title: title of the plot.
-# 				color1: Inner-most alternating color.
-#					color2: Alternate alternating color.
+#' @param x,y Numeric data
+#' @param	title String
+#' @param color1,color2 Color strings
+#' @return Pac-Man residual plot
 #' @keywords regression visualization
+#' @import plotrix
+#' @importFrom graphics par text
+#' @importFrom stats coef lm nls resid
 #' @export
-#' @examples
-#' Produces the Pac-Man Residual using the Yellow-White color scheme
-#' title <- "Pac-Man Residual of the Mean TPW and Temperature Model\nCondition: Clear Sky"
-#' pacres(x, y, title, "Yellow", "White")
-
 pacres <- function(x,y,title, color1, color2){
 	xmin 	<- min(x, na.rm=TRUE)
 	xmax 	<- max(x, na.rm=TRUE)
