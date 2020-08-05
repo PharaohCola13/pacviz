@@ -12,9 +12,9 @@ pacman <- function(x,y,title){
 	xmax 	<- max(x, na.rm=TRUE)
 	newx 	<- seq(xmin, xmax, length.out=length(x))
 
-	model.0 <- lm(log(y, base=exp(1))~x, data=data.frame(x,log(y, base=exp(1))))
+	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
-	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=log(y, base=exp(1))), start=start)
+	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
 
 # residual quanities from the regression model
 	residual 	<- abs(resid(model))
