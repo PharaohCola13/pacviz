@@ -2,7 +2,7 @@
 #'
 #' This function will create a pac-man residual plot for for regression analysis.
 #' @param x: domain of the data y: range of the data title: title of the plot
-#' @keywords regression
+#' @keywords regression visualization
 #' @export
 #' @examples
 #' pacman()
