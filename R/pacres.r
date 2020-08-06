@@ -16,6 +16,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # Finds and removes NaNed values from the dataset
 	nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
 	x <- x[-(nans)]; y <- y[-(nans)]
+
 	linMap <- function(x, xi, xf)
 		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
 # Linear Regression operations
@@ -48,12 +49,10 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		par(oma=c(1,1,1,1), cex=0.9)
 		n = divs[6]/10
 	}
-	print("Test1")
 # Plots the residual against an angular position
 	polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
 		radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
 		main=title, show.radial.grid=TRUE, grid.col="black")
-	print("TEst2")
 	if (divs[1] != 0){
 	# Draws the circles
 		draw.circle(0, 0, radius=divs[5], col=color1)
@@ -67,7 +66,6 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[3] - n, 0,  labels=bquote(.(divs[3])*sigma))
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
-		print("TEst3")
 
 		polar.plot(c(0, divs[5]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[5]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
@@ -90,11 +88,9 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}
-	draw.circle(0, 0, radius=sigma(model.0), col="Red")
-	print("TEst5")
+	draw.circle(0, 0, radius=sigma(model.0), border="Red")
 
 # Plots the data
 	polar.plot(residual, t, rp.type="s",
 		point.col="blue",point.symbols=16, add=TRUE)
-	print("Test6")
 }
