@@ -1,28 +1,27 @@
-# ' Pac-Man Residual Function
-# '
-# 'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
-# ' @param x,y Numeric data
-# ' @param	title String
-# ' @param color1,color2 Color strings
-# ' @return Pac-Man residual plot
-# ' @keywords regression visualization
-# ' @import plotrix
-# ' @importFrom graphics par text
-# ' @importFrom stats coef lm nls resid
-# ' @examples
-# ' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
-# ' @export
-library(plotrix)
+#' Pac-Man Residual Function
+#'
+#' This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+#' @param x,y Numeric data
+#' @param	title String
+#' @param color1,color2 Color strings
+#' @return Pac-Man residual plot
+#' @keywords regression visualization
+#' @import plotrix
+#' @importFrom graphics par text
+#' @importFrom stats coef lm nls resid
+#' @examples
+#' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+#' @export
 pacres <- function(x,y,title, color1="Yellow", color2="White"){
 
 	linMap <- function(x, xi, xf)
 		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
-
+	print("WhoopWhoop")
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
 	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
-
+	print("Test")
 	newx 		<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
 	confint <- predict(model.0, newdata=data.frame(x=newx), interval='confidence')
 	predint <- predict(model.0, newdata=data.frame(x=newx), interval='prediction')
@@ -31,9 +30,11 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	residual 	<- abs(resid(model))
 # sequence used for angular position
 	t 			<- linMap(x, 40, 320)#seq(40, 320, len=length(residual))
+	print("Whoop")
 	lp = seq.int(40, 320, length.out=5)
+	print(lp)
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
-
+	pritn(ln)
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
 	rmin 		<- min(residual, na.rm=TRUE)
