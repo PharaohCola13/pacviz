@@ -17,9 +17,16 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
 	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
+
+	newx 		<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
+	confint <- predict(model.0, newdata=data.frame(x=newx), interval='confidence')
+	predint <- predict(model.0, newdata=data.frame(x=newx), interval='prediction')
+	print(confint)
+	print(predint)
+
 # residual quanities from the regression model
 	residual 	<- abs(resid(model))
-
+	print(residual)
 # sequence used for angular position
 	t 			<- seq(40, 320, len=length(residual))
 # Maximum radial distance
