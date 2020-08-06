@@ -48,11 +48,11 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		par(oma=c(1,1,1,1), cex=0.9)
 		n = divs[6]/10
 	}
-	if (divs[1] != 0){
 # Plots the residual against an angular position
 	polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
 		radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
 		main=title, show.radial.grid=TRUE, grid.col="black")
+	if (divs[1] != 0){
 	# Draws the circles
 		draw.circle(0, 0, radius=divs[5], col=color1)
 		draw.circle(0, 0, radius=divs[4], col=color2)
@@ -66,15 +66,13 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
 
-		draw.circle(0, 0, radius=sigma(model.0), col="Red")
-
 		polar.plot(c(0, divs[5]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[5]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}else{
-# Plots the residual against an angular position
-		polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
-			radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
-			main=title, show.radial.grid=TRUE, grid.col="black")
+# # Plots the residual against an angular position
+# 		polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
+# 			radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
+# 			main=title, show.radial.grid=TRUE, grid.col="black")
 # Draws the circles
 		draw.circle(0, 0, radius=divs[6], col=color1)
 		draw.circle(0, 0, radius=divs[5], col=color2)
@@ -89,11 +87,11 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
 		text(divs[6] - n, 0,  labels=bquote(.(divs[6])*sigma))
 
-		draw.circle(0, 0, radius=sigma(model.0), border="Red")
-
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}
+	draw.circle(0, 0, radius=sigma(model.0), col="Red")
+
 # Plots the data
 	polar.plot(residual, t, rp.type="s",
 		point.col="blue",point.symbols=16, add=TRUE)
