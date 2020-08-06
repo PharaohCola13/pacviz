@@ -34,7 +34,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	lp = seq.int(40, 320, length.out=5)
 	print(lp)
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
-	pritn(ln)
+	print(ln)
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
 	rmin 		<- min(residual, na.rm=TRUE)
