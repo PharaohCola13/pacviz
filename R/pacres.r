@@ -13,7 +13,9 @@
 #' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
 #' @export
 pacres <- function(x,y,title, color1="Yellow", color2="White"){
-
+# Finds and removes NaNed values from the dataset
+	nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+	x <- x[-(nans)]; y <- y[-(nans)]
 	linMap <- function(x, xi, xf)
 		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
 # Linear Regression operations
@@ -94,4 +96,5 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # Plots the data
 	polar.plot(residual, t, rp.type="s",
 		point.col="blue",point.symbols=16, add=TRUE)
+	print("Test6")
 }
