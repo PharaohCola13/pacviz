@@ -12,7 +12,12 @@
 # ' @examples
 # ' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
 # ' @export
+library(plotrix)
 pacres <- function(x,y,title, color1="Yellow", color2="White"){
+
+	linMap <- function(x, xi, xf)
+		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
+
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
@@ -21,14 +26,14 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	newx 		<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
 	confint <- predict(model.0, newdata=data.frame(x=newx), interval='confidence')
 	predint <- predict(model.0, newdata=data.frame(x=newx), interval='prediction')
-	print(abs(resid(confint)))
-	print(abs(resid(predint)))
 
-# residual quanities from the regression model
+	# residual quanities from the regression model
 	residual 	<- abs(resid(model))
-	print(residual)
 # sequence used for angular position
-	t 			<- seq(40, 320, len=length(residual))
+	t 			<- linMap(x, 40, 320)#seq(40, 320, len=length(residual))
+	lp = seq.int(40, 320, length.out=5)
+	ln = rev(seq.int(round(min(x),-1), round(max(x),-1), length.out=5))
+
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
 	rmin 		<- min(residual, na.rm=TRUE)
@@ -44,10 +49,10 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	}
 	if (divs[1] != 0){
 # Plots the residual against an angular position
-		polar.plot(0, rp.type="s",labels="", point.col="Red",
-			radial.lim=c(0, divs[5]),show.grid=TRUE, show.grid.labels=FALSE,
-			main=title, show.radial.grid=FALSE, grid.col="black")
-# Draws the circles
+	polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
+		radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
+		main=title, show.radial.grid=TRUE, grid.col="black")
+	# Draws the circles
 		draw.circle(0, 0, radius=divs[5], col=color1)
 		draw.circle(0, 0, radius=divs[4], col=color2)
 		draw.circle(0, 0, radius=divs[3], col=color1)
@@ -60,13 +65,15 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
 
+		draw.circle(0, 0, radius=sigma(model.0), col="Red")
+
 		polar.plot(c(0, divs[5]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[5]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}else{
 # Plots the residual against an angular position
-		polar.plot(0, rp.type="s",labels="", point.col="Red",
+		polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
 			radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
-			main=title, show.radial.grid=FALSE, grid.col="black")
+			main=title, show.radial.grid=TRUE, grid.col="black")
 # Draws the circles
 		draw.circle(0, 0, radius=divs[6], col=color1)
 		draw.circle(0, 0, radius=divs[5], col=color2)
@@ -80,6 +87,8 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
 		text(divs[6] - n, 0,  labels=bquote(.(divs[6])*sigma))
+
+		draw.circle(0, 0, radius=sigma(model.0), border="Red")
 
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
