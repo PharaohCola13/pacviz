@@ -31,7 +31,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	# residual quanities from the regression model
 	residual 	<- abs(resid(model))
 # sequence used for angular position
-	t 			<- linMap(x, 40, 320)#seq(40, 320, len=length(residual))
+	t 			<- linMap(x, 40, 320)
 
 	lp = seq.int(40, 320, length.out=5)
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
@@ -83,7 +83,6 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
 		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
 		text(divs[6] - n, 0,  labels=bquote(.(divs[6])*sigma))
-		print("TEst4")
 
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
