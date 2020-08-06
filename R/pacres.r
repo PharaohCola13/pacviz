@@ -1,23 +1,25 @@
-#' Pac-Man Residual function
+#' Pac-Man Residual Function
 #'
-#' This function will create a pac-man residual plot for for regression analysis.
-#' @param x: domain of the data y: range of the data title: title of the plot
+#'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+#' @param x,y Numeric data
+#' @param	title String
+#' @param color1,color2 Color strings
+#' @return Pac-Man residual plot
 #' @keywords regression visualization
-#' @export
+#' @import plotrix
+#' @importFrom graphics par text
+#' @importFrom stats coef lm nls resid
 #' @examples
-#' pacman()
-
-pacman <- function(x,y,title){
-	xmin 	<- min(x, na.rm=TRUE)
-	xmax 	<- max(x, na.rm=TRUE)
-	newx 	<- seq(xmin, xmax, length.out=length(x))
-
+#' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+#' @export
+pacres <- function(x,y,title, color1="Yellow", color2="White"){
+# Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
 	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
-
 # residual quanities from the regression model
 	residual 	<- abs(resid(model))
+
 # sequence used for angular position
 	t 			<- seq(40, 320, len=length(residual))
 # Maximum radial distance
@@ -33,24 +35,18 @@ pacman <- function(x,y,title){
 		par(oma=c(1,1,1,1), cex=0.9)
 		n = divs[6]/10
 	}
-
-# Color Scheme for the rings
-	color1 <- "Yellow"
-    color2 <- "White"
 	if (divs[1] != 0){
 # Plots the residual against an angular position
 		polar.plot(0, rp.type="s",labels="", point.col="Red",
 			radial.lim=c(0, divs[5]),show.grid=TRUE, show.grid.labels=FALSE,
-			main= NA, show.radial.grid=FALSE, grid.col="black")
-
-		mtext(title, side=3,line=1)
-
+			main=title, show.radial.grid=FALSE, grid.col="black")
+# Draws the circles
 		draw.circle(0, 0, radius=divs[5], col=color1)
 		draw.circle(0, 0, radius=divs[4], col=color2)
 		draw.circle(0, 0, radius=divs[3], col=color1)
 		draw.circle(0, 0, radius=divs[2], col=color2)
 		draw.circle(0, 0, radius=divs[1], col=color1)
-
+# Draws the labels
 		text(divs[1] - n - n/10, 0,  labels=bquote(.(divs[1])*sigma))
 		text(divs[2] - n, 0,  labels=bquote(.(divs[2])*sigma))
 		text(divs[3] - n, 0,  labels=bquote(.(divs[3])*sigma))
@@ -63,17 +59,15 @@ pacman <- function(x,y,title){
 # Plots the residual against an angular position
 		polar.plot(0, rp.type="s",labels="", point.col="Red",
 			radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
-			main= NA, show.radial.grid=FALSE, grid.col="black")
-
-		mtext(title, side=3,line=1)
-
+			main=title, show.radial.grid=FALSE, grid.col="black")
+# Draws the circles
 		draw.circle(0, 0, radius=divs[6], col=color1)
 		draw.circle(0, 0, radius=divs[5], col=color2)
 		draw.circle(0, 0, radius=divs[4], col=color1)
 		draw.circle(0, 0, radius=divs[3], col=color2)
 		draw.circle(0, 0, radius=divs[2], col=color1)
 		draw.circle(0, 0, radius=divs[1], col=color2)
-
+# Draws the labels
 		text(divs[2] - n, 0,  labels=bquote(.(divs[2])*sigma))
 		text(divs[3] - n, 0,  labels=bquote(.(divs[3])*sigma))
 		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
@@ -83,6 +77,7 @@ pacman <- function(x,y,title){
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}
+# Plots the data
 	polar.plot(residual, t, rp.type="s",
 		point.col="blue",point.symbols=16, add=TRUE)
 }
