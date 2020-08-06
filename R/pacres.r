@@ -1,17 +1,17 @@
-#' Pac-Man Residual Function
-#'
-#'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
-#' @param x,y Numeric data
-#' @param	title String
-#' @param color1,color2 Color strings
-#' @return Pac-Man residual plot
-#' @keywords regression visualization
-#' @import plotrix
-#' @importFrom graphics par text
-#' @importFrom stats coef lm nls resid
-#' @examples
-#' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
-#' @export
+# ' Pac-Man Residual Function
+# '
+# 'This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+# ' @param x,y Numeric data
+# ' @param	title String
+# ' @param color1,color2 Color strings
+# ' @return Pac-Man residual plot
+# ' @keywords regression visualization
+# ' @import plotrix
+# ' @importFrom graphics par text
+# ' @importFrom stats coef lm nls resid
+# ' @examples
+# ' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+# ' @export
 pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
@@ -21,8 +21,8 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	newx 		<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
 	confint <- predict(model.0, newdata=data.frame(x=newx), interval='confidence')
 	predint <- predict(model.0, newdata=data.frame(x=newx), interval='prediction')
-	print(confint)
-	print(predint)
+	print(abs(resid(confint)))
+	print(abs(resid(predint)))
 
 # residual quanities from the regression model
 	residual 	<- abs(resid(model))
