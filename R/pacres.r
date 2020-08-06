@@ -32,7 +32,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # sequence used for angular position
 	t 			<- linMap(x, 40, 320)#seq(40, 320, len=length(residual))
 	lp = seq.int(40, 320, length.out=5)
-	ln = rev(seq.int(round(min(x),-1), round(max(x),-1), length.out=5))
+	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
 
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
