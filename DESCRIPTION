@@ -10,5 +10,6 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports:
     plotrix,
+    circlize,
     graphics,
     stats,

@@ -50,46 +50,33 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		n = divs[6]/10
 	}
 # Plots the residual against an angular position
-	polar.plot(0, rp.type="s",labels=ln, label.pos=lp, point.col="Red",
-		radial.lim=c(0, divs[6]),show.grid=TRUE, show.grid.labels=FALSE,
-		main=title, show.radial.grid=TRUE, grid.col="black")
-	if (divs[1] != 0){
-	# Draws the circles
-		draw.circle(0, 0, radius=divs[5], col=color1)
-		draw.circle(0, 0, radius=divs[4], col=color2)
-		draw.circle(0, 0, radius=divs[3], col=color1)
-		draw.circle(0, 0, radius=divs[2], col=color2)
-		draw.circle(0, 0, radius=divs[1], col=color1)
-# Draws the labels
-		text(divs[1] - n - n/10, 0,  labels=bquote(.(divs[1])*sigma))
-		text(divs[2] - n, 0,  labels=bquote(.(divs[2])*sigma))
-		text(divs[3] - n, 0,  labels=bquote(.(divs[3])*sigma))
-		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
-		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
+	polar.plot(0,labels=ln, label.pos=lp, radial.lim=c(0, divs[6]), main=title,show.grid=TRUE, show.grid.labels=FALSE, show.radial.grid=TRUE)
+	for (i in lp){
+		polar.plot(c(0, divs[6]+n/2), c(i,i), lwd=1, rp.type="p",line.col="Black", add=TRUE)
+	}
 
+	if (divs[1] != 0){
+		# Draws the circles and the labels
+		for (i in 5:1){
+			if ((i %% 2) == 0){color <- color2}else{color <- color1}
+			draw.circle(0,0, radius=divs[i], col=color)
+			text(divs[i] - n, 0,  labels=bquote(.(divs[i])*sigma))
+
+		}
 		polar.plot(c(0, divs[5]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[5]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}else{
-# Draws the circles
-		draw.circle(0, 0, radius=divs[6], col=color1)
-		draw.circle(0, 0, radius=divs[5], col=color2)
-		draw.circle(0, 0, radius=divs[4], col=color1)
-		draw.circle(0, 0, radius=divs[3], col=color2)
-		draw.circle(0, 0, radius=divs[2], col=color1)
-		draw.circle(0, 0, radius=divs[1], col=color2)
-# Draws the labels
-		text(divs[2] - n, 0,  labels=bquote(.(divs[2])*sigma))
-		text(divs[3] - n, 0,  labels=bquote(.(divs[3])*sigma))
-		text(divs[4] - n, 0,  labels=bquote(.(divs[4])*sigma))
-		text(divs[5] - n, 0,  labels=bquote(.(divs[5])*sigma))
-		text(divs[6] - n, 0,  labels=bquote(.(divs[6])*sigma))
-
+		# Draws the circles and the labels
+		for (i in 6:1){
+			if ((i %% 2) == 0){color <- color1}else{color <- color2}
+			draw.circle(0,0, radius=divs[i], col=color)
+			text(divs[i+1] - n, 0,  labels=bquote(.(divs[i+1])*sigma))
+		}
 		polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 		polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	}
-	draw.circle(0, 0, radius=sigma(model.0), border="Red")
-
+# Representation of the residual standard deivation
+	draw.sector(start.degree=330, end.degree=30, rou1=sigma(model), rou2=sigma(model))
 # Plots the data
-	polar.plot(residual, t, rp.type="s",
-		point.col="blue",point.symbols=16, add=TRUE)
+	polar.plot(residual, t, rp.type="s", point.col="blue", point.symbols=16,add=TRUE)
 }
