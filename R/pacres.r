@@ -16,12 +16,11 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 
 	linMap <- function(x, xi, xf)
 		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
-	print("WhoopWhoop")
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
 	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
-	print("Test")
+
 	newx 		<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
 	confint <- predict(model.0, newdata=data.frame(x=newx), interval='confidence')
 	predint <- predict(model.0, newdata=data.frame(x=newx), interval='prediction')
@@ -30,7 +29,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 	residual 	<- abs(resid(model))
 # sequence used for angular position
 	t 			<- linMap(x, 40, 320)#seq(40, 320, len=length(residual))
-	print("Whoop")
+
 	lp = seq.int(40, 320, length.out=5)
 	print(lp)
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
