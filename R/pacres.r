@@ -6,11 +6,11 @@
 #' @param color1,color2 Color strings
 #' @return Pac-Man residual plot
 #' @keywords regression visualization
-#' @import plotrix
+#' @import plotrix circlize
 #' @importFrom graphics par text
-#' @importFrom stats coef lm nls resid
+#' @importFrom stats coef lm nls resid predict sigma
 #' @examples
-#' pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+#' pacres(rnorm(20, mean=0, sd=10),log(rnorm(20, mean=0, sd=10), base=exp(1)),"Package_Test")
 #' @export
 pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # Finds and removes NaNed values from the dataset

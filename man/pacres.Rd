@@ -20,7 +20,7 @@ Pac-Man residual plot
 This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
 }
 \examples{
-pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+pacres(rnorm(20, mean=0, sd=10),log(rnorm(20, mean=0, sd=10), base=exp(1)),"Package_Test")
 }
 \keyword{regression}
 \keyword{visualization}
