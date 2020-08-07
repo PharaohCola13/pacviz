@@ -4,12 +4,16 @@
 \alias{pacres}
 \title{Pac-Man Residual Function}
 \usage{
-pacres(x, y, title, color1 = "Yellow", color2 = "White")
+pacres(x, y, title, unit, axis_label, color1 = "Yellow", color2 = "White")
 }
 \arguments{
 \item{x, y}{Numeric data}
 
 \item{title}{String}
+
+\item{unit}{String to define units on the angular axis}
+
+\item{axis_label}{String to label angular axis}
 
 \item{color1, color2}{Color strings}
 }
@@ -17,10 +21,12 @@ pacres(x, y, title, color1 = "Yellow", color2 = "White")
 Pac-Man residual plot
 }
 \description{
-This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation the domain of the data.
 }
 \examples{
-pacres(rnorm(20, mean=0, sd=10),log(rnorm(20, mean=0, sd=10), base=exp(1)),"Package_Test")
+x <- rnorm(20, mean=0, sd=10)
+y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+pacres(x,y,"\u00B0C", "unit", "Title")
 }
 \keyword{regression}
 \keyword{visualization}
