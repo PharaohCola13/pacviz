@@ -14,6 +14,8 @@ This function will create a Pac-Man residual plot for for regression analysis. T
 ## Examples
 ```
 # Produces the Pac-Man Residual using the Yellow-White color scheme
-pacres(rnorm(20, mean=0, sd=1),exp(rnorm(20, mean=0, sd=1)),"Package_Test", "Yellow", "White")
+x <- rnorm(20, mean=0, sd=10)
+y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+pacres(x,y,"\u00B0C", "unit", "Title")
 ```
 <img src="https://i.ibb.co/f47qPyj/Rplots-1.png" width='500' style='display: block; margin-left: auto; margin-right: auto;'/>

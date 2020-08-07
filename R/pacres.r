@@ -14,7 +14,7 @@
 #' @examples
 #' x <- rnorm(20, mean=0, sd=10)
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#' pacres(x,y,"\u00B0C", "unit", "Title")
+#' pacres(x,y,"Title","units", "Axis Label")
 #' @export
 pacres <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White"){
 # Finds and removes NaNed values from the dataset

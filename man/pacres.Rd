@@ -26,7 +26,7 @@ This function will create a pac-man residual plot for for regression analysis. T
 \examples{
 x <- rnorm(20, mean=0, sd=10)
 y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-pacres(x,y,"\u00B0C", "unit", "Title")
+pacres(x,y,"Title","units", "Axis Label")
 }
 \keyword{regression}
 \keyword{visualization}
