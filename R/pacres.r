@@ -19,6 +19,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 
 	linMap <- function(x, xi, xf)
 		(x - min(x))/max(x-min(x)) * (xi - xf) + xf
+	deg2rad <- function(deg) {(deg * pi) / (180)}
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
 	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
@@ -35,6 +36,7 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 
 	lp = seq.int(40, 320, length.out=5)
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
+	unit = "\u00B0C"
 
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
@@ -50,7 +52,10 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 		n = divs[6]/10
 	}
 # Plots the residual against an angular position
-	polar.plot(0,labels=ln, label.pos=lp, radial.lim=c(0, divs[6]), main=title,show.grid=TRUE, show.grid.labels=FALSE, show.radial.grid=TRUE)
+	polar.plot(0,labels="", radial.lim=c(0, divs[6]), main=title,show.grid=FALSE, show.grid.labels=FALSE, show.radial.grid=FALSE)
+	for (i in 1:(length(ln))){
+		arctext(paste(ln[i], unit, sep=""), stretch=1, middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
+	}
 	for (i in lp){
 		polar.plot(c(0, divs[6]+n/2), c(i,i), lwd=1, rp.type="p",line.col="Black", add=TRUE)
 	}
@@ -80,3 +85,9 @@ pacres <- function(x,y,title, color1="Yellow", color2="White"){
 # Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="blue", point.symbols=16,add=TRUE)
 }
+# library(plotrix)
+# library(circlize)
+# x <- rnorm(20, mean=0, sd=10)
+# y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+#
+# pacres(x,y,"Package_Test")
