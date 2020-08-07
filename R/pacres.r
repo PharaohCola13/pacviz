@@ -34,8 +34,8 @@ pacres <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 # sequence used for angular position
 	t 			<- linMap(x, 40, 320)
 
-	lp = seq.int(40, 320, length.out=5)
-	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=5))
+	lp = seq.int(40, 320, length.out=6)
+	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=6))
 
 # Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
@@ -44,20 +44,19 @@ pacres <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	divs 		<- seq(floor(rmin), ceiling(rmax), len=6)
 	n 			<- divs[6]/10
 # Plots the residual against an angular position
-	par(oma=c(1,1,1,1), cex=0.9)
-	polar.plot(0,labels="", radial.lim=c(0, divs[6]), main=title,show.grid=FALSE, show.grid.labels=FALSE, show.radial.grid=FALSE)
+	par(oma=c(0,0,3,0), cex=0.9)
+	polar.plot(0,labels="", radial.lim=c(0, divs[6]), show.grid=FALSE, show.grid.labels=FALSE, show.radial.grid=FALSE)
+	title(paste("\n\n", title, sep=""), outer=TRUE)
 # Generates 'tick marks' for angular axis
 	for (i in lp){
 		polar.plot(c(0, divs[6]+n/2), c(i,i), lwd=1, rp.type="p",line.col="Black", add=TRUE)
 	}
 # Generates angular labels (w/ units) and axis title
-	for (i in 1:5){
-		if (is.element(i, 1:2)){
+	for (i in 1:6){
+		if (is.element(i, 1:3)){
 			arctext(paste(ln[i], unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
-		}else if (is.element(i, 4:5)){
+		}else if (is.element(i, 4:6)){
 			arctext(paste(ln[i], unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=FALSE)
-		}else{
-			text(-divs[6]-(n*1.5), 0, labels=paste(ln[3], unit, sep=""))
 		}
 	}
 	arctext(axis_label, middle=0, radius=divs[6]+n, clockwise=TRUE)
