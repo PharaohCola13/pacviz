@@ -6,7 +6,7 @@ tags:
   - visualization
 authors:
   - name: Spencer Riley
-    orcid: 000-
+    orcid: 0000-0001-7949-9163
     affiliation: 1
 affiliations:
   - name: Physics Department, New Mexico Institute of Mining and Technology
