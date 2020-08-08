@@ -30,12 +30,21 @@ There are shortcomings for a visualization that views big-picture components of 
 ```
 library(pacres)
 
-x <- rnorm(20, mean=0, sd=10)
-y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+# Pac-Man Residual
+x <- c(-17, 9, -13, 0, 8, 1, 1, -4, -9, 7, 10, -6, 5, 18, 1, -4, 10, 6, 5, 0)
+y <- c(11, -1, -1, 9, -10, -3, -5, -24, -3, 11, 6, -1, -13, -5, 2, 2, 4, 3, -9, 1)
 
-pacres(x,y, "Title", " units", "Axis Label")
+pacres(x,y, "Package Test", "\u00B0C", "Axis Label")
+
+# Traditional Residual (for comparison)
+par(oma=c(0,0,1,0), mar=c(5,5,5,5), cex=0.9)
+plot(x, resid(lm(y~x, data=data.frame(x,y))),
+  col=c("Black"), pch=16, xlab="Axis Label [C]", ylab=expression(sigma), main="Package Test")
 
 ```
+Pac-Man Reisudal | Traditional Residual
+:---------------:|:------------------:
+![](./fig1.png) | ![](./fig2.png)
 
 # Acknowledgments
 
