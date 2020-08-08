@@ -17,20 +17,13 @@
 #' pacres(x,y,"Title","units", "Axis Label")
 #' @export
 pacres <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White"){
-# Finds and removes NaNed values from the dataset
-	nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-	x <- x[-(nans)]; y <- y[-(nans)]
-
 	linMap <- function(x, xi, xf) {(x - min(x))/max(x-min(x)) * (xi - xf) + xf}
 	deg2rad <- function(deg) {(deg * pi) / (180)}
 
 # Linear Regression operations
 	model.0 <- lm(y~x, data=data.frame(x,y))
-	start 	<- list(a=coef(model.0)[1], b=coef(model.0)[2])
-	model 	<- nls(y~a+b*x, data=data.frame(x=x, y=y), start=start)
-
-	# residual quanities from the regression model
-	residual 	<- abs(resid(model))
+# residual quanities from the regression model
+	residual 	<- abs(resid(model.0))
 # sequence used for angular position
 	t 			<- linMap(x, 40, 320)
 
@@ -72,7 +65,7 @@ pacres <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
 # Representation of the residual standard deivation
-	draw.sector(start.degree=330, end.degree=30, rou1=sigma(model), rou2=sigma(model))
+	draw.sector(start.degree=330, end.degree=30, rou1=sigma(model.0), rou2=sigma(model.0))
 # Plots the data
-	polar.plot(residual, t, rp.type="s", point.col="blue", point.symbols=16,add=TRUE)
+	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16,add=TRUE)
 }
