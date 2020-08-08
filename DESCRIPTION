@@ -1,4 +1,4 @@
-Package: pacres
+Package: pacviz
 Title: Pac-Man Residual Function
 Version: 2.0.0.0
 Authors@R: person("Spencer", "Riley", email = "spencer.riley@student.nmt.edu", role = c("aut", "cre"))
