@@ -31,7 +31,7 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	t 			<- linMap(x, 40, 320)
 
 	lp = seq.int(40, 320, length.out=6)
-	ln = rev(seq.int(round(min(x, na.rm=TRUE),-1), round(max(x, na.rm=TRUE),-1), length.out=6))
+	ln = rev(seq.int(round(min(x, na.rm=TRUE),1), round(max(x, na.rm=TRUE),1), length.out=6))
 
 	# Maximum radial distance
 	rmax 		<- max(residual, na.rm=TRUE)
@@ -39,6 +39,7 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	# 6 equal divisions
 	divs 		<- seq(floor(rmin), ceiling(rmax), len=6)
 	n 			<- divs[6]/10
+
 	# Plots the residual against an angular position
 	par(oma=c(0,0,3,0), cex=0.9)
 	polar.plot(0,labels="", radial.lim=c(0, divs[6]), show.grid=FALSE, show.grid.labels=FALSE, show.radial.grid=FALSE)
@@ -50,9 +51,9 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	# Generates angular labels (w/ units) and axis title
 	for (i in 1:6){
 		if (is.element(i, 1:3)){
-			arctext(paste(ln[i], unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
+			arctext(paste(round(ln[i], 1), unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
 		}else if (is.element(i, 4:6)){
-			arctext(paste(ln[i], unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=FALSE)
+			arctext(paste(round(ln[i],1), unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=FALSE)
 		}
 	}
 	arctext(axis_label, middle=0, radius=divs[6]+n, clockwise=TRUE)
@@ -64,20 +65,10 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 		text(divs[i+1] - n, 0,  labels=bquote(.(divs[i+1])*sigma))
 	}
 	# Draws the label space
-	polar.plot(c(0, divs[6]), c(min(t) - 10, min(t) - 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
-	polar.plot(c(0, divs[6]), c(max(t) + 10, max(t) + 10), lwd=1, rp.type="p",line.col="black", add=TRUE)
+	polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
+	polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	# Representation of the residual standard deivation
-	draw.sector(start.degree=330, end.degree=30, rou1=sigma(model(x,y)), rou2=sigma(model(x,y)))
+	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model(x,y)), rou2=sigma(model(x,y)), lty="dashed")
 	# Plots the data
-	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16,add=TRUE)
+	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
 }
-# library(plotrix)
-# library(circlize)
-# x <- c(-17, 9, -13, 0, 8, 1, 1, -4, -9, 7, 10, -6, 5, 18, 1, -4, 10, 6, 5, 0)
-# y <- c(11, -1, -1, 9, -10, -3, -5, -24, -3, 11, 6, -1, -13, -5, 2, 2, 4, 3, -9, 1)
-#
-# pacres(x,y, "Package Test", "\u00B0C", "Axis Label")
-#
-# par(oma=c(0,0,1,0), mar=c(5,5,5,5), cex=0.9)
-# plot(x, resid(lm(y~x, data=data.frame(x,y))),
-#   col=c("Black"), pch=16, xlab="Axis Label [C]", ylab=expression(sigma), main="Package Test")

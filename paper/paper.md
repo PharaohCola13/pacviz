@@ -33,7 +33,7 @@ library(pacres)
 x <- c(-17, 9, -13, 0, 8, 1, 1,)
 y <- c(11, -1, -1, 9, -10, -3, -5)
 
-pacres(x,y, "Package Test", "\u00B0C", "Axis Label")
+pacviz(x,y, "Package Test", "\u00B0C", "Axis Label")
 
 # Traditional Residual (for comparison)
 par(oma=c(0,0,1,0), mar=c(5,5,5,5), cex=0.9)
@@ -46,7 +46,7 @@ plot(x, resid(lm(y~x, data=data.frame(x,y))),
 ```
 Pac-Man Reisudal | Traditional Residual
 :---------------:|:------------------:
-<img src='./fig1.png' width='100'/> | <img src='./fig2.png' width='100'/>
+![](./fig1.png) | ![](./fig2.png)
 
 # Acknowledgments
 
