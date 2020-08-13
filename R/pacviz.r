@@ -72,22 +72,22 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 	# Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
 }
-library(plotrix)
-library(circlize)
-x <- rnorm(20, mean=0, sd=10)
-y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-
-nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-x <- x[-(nans)]; y <- y[-(nans)]
-mod 	<- lm(y~x, data=data.frame(x,y))
-mod2 	<- lm(y~poly(x,2))
-mod3 	<- lm(y~poly(x,3))
-
-plot(x,y)
-curve(coef(mod)[1] + coef(mod)[2]*x, 	 col="Red", add=TRUE)
-curve(coef(mod2)[1] + coef(mod2)[2]*x, col="Blue", add=TRUE)
-curve(coef(mod3)[1] + coef(mod3)[2]*x, col="Purple", add=TRUE)
-
-pacviz(x,y, "Linear Regression Title","units", "Axis Label")
-pacviz(x,y, "Quadratic Regression Test", "units", "Axis Label", model=lm(y~poly(x,2)))
-pacviz(x,y, "3-Degree Polynomial Regression Test", "units", "Axis Label", model=lm(y~poly(x,3)))
+# library(plotrix)
+# library(circlize)
+# x <- rnorm(20, mean=0, sd=10)
+# y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+#
+# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+# x <- x[-(nans)]; y <- y[-(nans)]
+# mod 	<- lm(y~x, data=data.frame(x,y))
+# mod2 	<- lm(y~poly(x,2))
+# mod3 	<- lm(y~poly(x,3))
+#
+# plot(x,y)
+# curve(coef(mod)[1] + coef(mod)[2]*x, 	 col="Red", add=TRUE)
+# curve(coef(mod2)[1] + coef(mod2)[2]*x, col="Blue", add=TRUE)
+# curve(coef(mod3)[1] + coef(mod3)[2]*x, col="Purple", add=TRUE)
+#
+# pacviz(x,y, "Linear Regression Title","units", "Axis Label")
+# pacviz(x,y, "Quadratic Regression Test", "units", "Axis Label", model=lm(y~poly(x,2)))
+# pacviz(x,y, "3-Degree Polynomial Regression Test", "units", "Axis Label", model=lm(y~poly(x,3)))
