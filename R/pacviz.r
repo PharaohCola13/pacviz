@@ -16,17 +16,17 @@
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
 #' pacviz(x,y,"Title","units", "Axis Label")
 #' @export
-pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White"){
-	linMap <- function(x, xi, xf) {(x - min(x))/max(x-min(x)) * (xi - xf) + xf}
+pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,y)), color1="Yellow", color2="White"){
+	linMap 	<- function(x, xi, xf) {(x - min(x))/max(x-min(x)) * (xi - xf) + xf}
 	deg2rad <- function(deg) {(deg * pi) / (180)}
-	model <- function(x,y){lm(y~x, data=data.frame(x,y))}
+	# model 	<- function(x,y){lm(y~x, data=data.frame(x,y))}
 
-	newx 	<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
-	confint <- predict(model(x,y), newdata=data.frame(x=newx), interval='confidence')
-	predint <- predict(model(x,y), newdata=data.frame(x=newx), interval='prediction')
+	# newx 	<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
+	# confint <- predict(model, newdata=data.frame(x=newx), interval='confidence')
+	# predint <- predict(model, newdata=data.frame(x=newx), interval='prediction')
 
 	# residual quanities from the regression model
-	residual 	<- abs(resid(model(x,y)))
+	residual 	<- abs(resid(model))
 	# sequence used for angular position
 	t 			<- linMap(x, 40, 320)
 
@@ -51,9 +51,9 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	# Generates angular labels (w/ units) and axis title
 	for (i in 1:6){
 		if (is.element(i, 1:3)){
-			arctext(paste(round(ln[i], 1), unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
+			arctext(paste(round(ln[i], 1), unit, sep=" "), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=TRUE)
 		}else if (is.element(i, 4:6)){
-			arctext(paste(round(ln[i],1), unit, sep=""), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=FALSE)
+			arctext(paste(round(ln[i],1), unit, sep=" "), middle=deg2rad(lp[i]), radius=divs[6]+n, clockwise=FALSE)
 		}
 	}
 	arctext(axis_label, middle=0, radius=divs[6]+n, clockwise=TRUE)
@@ -68,7 +68,26 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	# Representation of the residual standard deivation
-	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model(x,y)), rou2=sigma(model(x,y)), lty="dashed")
+	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model), rou2=sigma(model), lty="dashed")
 	# Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
 }
+library(plotrix)
+library(circlize)
+x <- rnorm(20, mean=0, sd=10)
+y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+
+nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+x <- x[-(nans)]; y <- y[-(nans)]
+mod 	<- lm(y~x, data=data.frame(x,y))
+mod2 	<- lm(y~poly(x,2))
+mod3 	<- lm(y~poly(x,3))
+
+plot(x,y)
+curve(coef(mod)[1] + coef(mod)[2]*x, 	 col="Red", add=TRUE)
+curve(coef(mod2)[1] + coef(mod2)[2]*x, col="Blue", add=TRUE)
+curve(coef(mod3)[1] + coef(mod3)[2]*x, col="Purple", add=TRUE)
+
+pacviz(x,y, "Linear Regression Title","units", "Axis Label")
+pacviz(x,y, "Quadratic Regression Test", "units", "Axis Label", model=lm(y~poly(x,2)))
+pacviz(x,y, "3-Degree Polynomial Regression Test", "units", "Axis Label", model=lm(y~poly(x,3)))
