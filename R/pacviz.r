@@ -16,21 +16,27 @@
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
 #' pacviz(x,y,"Title","units", "Axis Label")
 #' @export
-pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White"){
+pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White", standardize=FALSE){
+	# Revert margin settings back to default after exit
+	oldpar <- par(mar=par()$mar, oma=par()$oma)
+	on.exit(par(oldpar))
+
 	linMap <- function(x, xi, xf) {(x - min(x))/max(x-min(x)) * (xi - xf) + xf}
 	deg2rad <- function(deg) {(deg * pi) / (180)}
 	model <- function(x,y){lm(y~x, data=data.frame(x,y))}
 
-	newx 	<- seq(min(x, na.rm=TRUE), max(x, na.rm=TRUE), length.out=length(x))
-	confint <- predict(model(x,y), newdata=data.frame(x=newx), interval='confidence')
-	predint <- predict(model(x,y), newdata=data.frame(x=newx), interval='prediction')
-
 	# residual quanities from the regression model
-	residual 	<- abs(resid(model(x,y)))
+	if (standardize == TRUE){
+		residual <- abs(rstandard(model(x,y)))
+	}else{
+		residual 	<- abs(resid(model(x,y)))
+	}
 	# sequence used for angular position
 	t 			<- linMap(x, 40, 320)
 
+	# Angular axis label positions
 	lp = seq.int(40, 320, length.out=6)
+	# Angular axis labels
 	ln = rev(seq.int(round(min(x, na.rm=TRUE),1), round(max(x, na.rm=TRUE),1), length.out=6))
 
 	# Maximum radial distance
@@ -72,3 +78,7 @@ pacviz <- function(x,y,title, unit, axis_label, color1="Yellow", color2="White")
 	# Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
 }
+library(plotrix); library(circlize)
+x <- rnorm(20, mean=0, sd=10)
+y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+pacviz(x,y,"Title","units", "Axis Label", standardize=TRUE)
