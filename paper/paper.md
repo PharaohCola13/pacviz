@@ -15,19 +15,19 @@ date: DD Mon YYY
 bibliography: paper.bib
 ---
 # Summary
-The results of a regression algorithm typically takes the form of a residual plot, showing the relationship (or lack thereof) between the domain and the standard deviation of the data associated with the model. From the residual, the performance of the model can be determined.
+The results of a regression algorithm typically takes the form of a residual plot, showing the relationship (or lack thereof) between the domain and the residual values of the data associated with the model. From the residual, the performance of the model can be determined.
 
-`pacres` contributes a novel approach for looking at the broad view performance of the regression model by constructing a 'Pac-Man' residual plot. This visualization technique applies a bijective map from the domain of the data to angular values between 40 and 320 degrees,
+`pacviz` contributes a novel approach for looking at the broad view performance of the regression model by constructing a 'Pac-Man' residual plot. This visualization technique applies a bijective map from the domain of the data to angular values between 40 and 320 degrees,
 \begin{equation}
 X: \rightarrow [40, 320]\, .
 \end{equation}
-This restriction is applied to allow space for radial labels.By taking the absolute value of the factors of standard deviation on the radial coordinate system, we can observe the overall performance of the model with relative ease.
+This restriction is applied to allow space for radial labels. By taking the absolute value of the residual values on the radial coordinate system, we can observe the overall performance of the model with relative ease.
 
 There are shortcomings for a visualization that views big-picture components of a model. In the case of the 'Pac-Man' residual plot we lose the ability to determine the dependence of the relationship. Through a traditional residual plot, it would be simple to determine if there was systematic or random error based on the relationship between the standard deviation and the domain of the data.   
 
 # Usage
 ```
-library(pacres)
+library(pacviz)
 
 # Pac-Man Residual
 x <- c(-17, 9, -13, 0, 8, 1, 1,)
