@@ -16,7 +16,7 @@
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
 #' pacviz(x,y,"Title","units", "Axis Label")
 #' @export
-pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,y)), color1="Yellow", color2="White", standardize=FALSE){
+pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,y)), color1="Yellow", standardize=FALSE){
 	# Revert margin settings back to default after exit
 	oldpar <- par(mar=par()$mar, oma=par()$oma)
 	on.exit(par(oldpar))
@@ -59,7 +59,7 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 
 	# Draws the circles and the labels
 	for (i in 6:1){
-		if ((i %% 2) == 0){color <- color1}else{color <- color2}
+		if ((i %% 2) == 0){color <- color1}else{color <- "White"}
 		draw.circle(0,0, radius=divs[i], col=color)
 		text(divs[i+1] - n, 0,  labels=bquote(.(divs[i+1])*sigma))
 	}
@@ -67,7 +67,21 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 	polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	# Representation of the residual standard deivation
-	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model), rou2=sigma(model), lty="dashed")
+	#opposite(color1, plot=FALSE)[2]
+	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model), rou2=sigma(model), lty="dashed", border="Black")
+	if (divs[6] > 1) {draw.sector(start.degree=320, end.degree=40, rou1=0.5, rou2=0.5, lty="dotted", border="Black")}
 	# Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
 }
+# library(plotrix); library(circlize);library(colortools)
+#
+# x <- rnorm(20, mean=0, sd=10)
+# y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+#
+# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+# x <- x[-(nans)]; y <- y[-(nans)]
+#
+# pacviz(x,y,"Title","units", "Axis Label", color1="yellow")
+# plot(x, abs(resid(lm(y~x, data=data.frame(x,y)))))
+# abline(h=0.5, col="black")
+# abline(h=1.0, col="Red")
