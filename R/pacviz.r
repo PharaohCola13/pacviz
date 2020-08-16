@@ -61,7 +61,7 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 	for (i in 6:1){
 		if ((i %% 2) == 0){color <- color1}else{color <- "White"}
 		draw.circle(0,0, radius=divs[i], col=color)
-		text(divs[i+1] - n, 0,  labels=bquote(.(divs[i+1])*sigma))
+		text(divs[i+1] - n, 0,  labels=bquote(.(divs[i+1]*2)*sigma))
 	}
 	# Draws the label space
 	polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
