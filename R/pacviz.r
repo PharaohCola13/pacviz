@@ -66,22 +66,23 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 	# Draws the label space
 	polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
 	polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd=1, rp.type="p",line.col="black", add=TRUE)
-	# Representation of the residual standard deivation
-	#opposite(color1, plot=FALSE)[2]
-	draw.sector(start.degree=320, end.degree=40, rou1=sigma(model), rou2=sigma(model), lty="dashed", border="Black")
-	if (divs[6] > 1) {draw.sector(start.degree=320, end.degree=40, rou1=0.5, rou2=0.5, lty="dotted", border="Black")}
 	# Plots the data
 	polar.plot(residual, t, rp.type="s", point.col="black", point.symbols=16, radial.lim=c(0, divs[6]), add=TRUE)
+	if (divs[6] > 1) {draw.sector(start.degree=320, end.degree=40, rou1=0.5, rou2=0.5, lty="dashed", border="Black")}
+
+	# Representation of the residual standard deivation
+	mtext(c(parse(text=sprintf("sigma == %.3f", sigma(model)))), at=par("usr")[1]+0.05*diff(par("usr")[1:2]))
+	rect(par("usr")[1]-0.05*diff(par("usr")[1:2]),
+			 -(par("usr")[1]-0.05*diff(par("usr")[1:2])),
+			 par("usr")[1]+0.15*diff(par("usr")[1:2]),
+			 -(par("usr")[1]+0.01*diff(par("usr")[1:2])), border=1)
 }
-# library(plotrix); library(circlize);library(colortools)
-#
-# x <- rnorm(20, mean=0, sd=10)
-# y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#
-# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-# x <- x[-(nans)]; y <- y[-(nans)]
-#
-# pacviz(x,y,"Title","units", "Axis Label", color1="yellow")
-# plot(x, abs(resid(lm(y~x, data=data.frame(x,y)))))
-# abline(h=0.5, col="black")
-# abline(h=1.0, col="Red")
+library(plotrix); library(circlize)
+
+x <- rnorm(20, mean=10, sd=10)
+y <- log(rnorm(20, mean=10, sd=10), base=exp(1))
+
+nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+x <- x[-(nans)]; y <- y[-(nans)]
+
+pacviz(x,y,"Title","units", "Axis Label", color1="yellow")
