@@ -18,28 +18,38 @@ pacman(
 \arguments{
 \item{x, y}{Numeric data}
 
-\item{title}{String}
+\item{title}{Figure title}
 
-\item{unit}{String to define units on the angular axis}
+\item{unit}{String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')}
 
-\item{axis_label}{String to label angular axis}
+\item{axis_label}{Angular axis label}
 
-\item{model}{Ouput from lm()}
+\item{model}{An object for which the extraction of model residuals is meaningful.}
 
-\item{color1}{Color strings}
+\item{color1}{Color value as string or rgb}
 
-\item{standardize}{Check to standardize the residual}
+\item{standardize}{Boolean to standardize the residual value}
 }
 \value{
 Pac-Man residual plot
 }
 \description{
-This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation the domain of the data.
+This function will create a Pac-Man residual plot for for regression analysis. The Pac-Man residual takes the absolute value of the residual values and plots them radially against the domain mapped to angles ranging from 40 to 320 degrees.
+}
+\note{
+\if{latex}{\figure{fig1.pdf}{options: width=3in}}
+\if{latex}{\figure{fig2.pdf}{options: width=3in}}
 }
 \examples{
+# Generic Pac-Man residual
 x <- rnorm(20, mean=0, sd=10)
 y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-pacman(x,y,'Title','units', 'Axis Label')
+pacman(x,y,'Example 1','units', 'Axis Label')
+
+# Pac-Man residual using alternate color, residual standardization, and temperature units
+x <- rnorm(20, mean=0, sd=10)
+y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+pacman(x,y, 'Example 2', 'degC', "Temperature", color1="lightblue", standardize=TRUE)
 }
 \keyword{regression}
 \keyword{visualization}

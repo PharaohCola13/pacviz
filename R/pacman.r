@@ -1,13 +1,13 @@
 #' Pac-Man Residual Function
 #'
-#' This function will create a pac-man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation the domain of the data.
+#' This function will create a Pac-Man residual plot for for regression analysis. The Pac-Man residual takes the absolute value of the residual values and plots them radially against the domain mapped to angles ranging from 40 to 320 degrees.
 #' @param x,y Numeric data
-#' @param title String
-#' @param unit String to define units on the angular axis
-#' @param axis_label String to label angular axis
-#' @param model Ouput from lm()
-#' @param color1 Color strings
-#' @param standardize Check to standardize the residual
+#' @param title Figure title
+#' @param unit String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')
+#' @param axis_label Angular axis label
+#' @param model An object for which the extraction of model residuals is meaningful.
+#' @param color1 Color value as string or rgb
+#' @param standardize Boolean to standardize the residual value
 #' @return Pac-Man residual plot
 #' @keywords regression visualization
 #' @import plotrix circlize
@@ -15,15 +15,39 @@
 #' @importFrom stats coef lm nls resid predict sigma rstandard
 #' @importFrom utils packageDescription
 #' @examples
+#' # Generic Pac-Man residual
 #' x <- rnorm(20, mean=0, sd=10)
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#' pacman(x,y,'Title','units', 'Axis Label')
+#' pacman(x,y,'Example 1','units', 'Axis Label')
+#' @examples
+#'
+#' # Pac-Man residual using alternate color, residual standardization, and temperature units
+#' x <- rnorm(20, mean=0, sd=10)
+#' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
+#' pacman(x,y, 'Example 2', 'degC', "Temperature", color1="lightblue", standardize=TRUE)
+#' @note
+#' \if{latex}{\figure{fig1.pdf}{options: width=3in}}
+#' \if{latex}{\figure{fig2.pdf}{options: width=3in}}
 #' @export
-pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,
-    y)), color1 = "Yellow", standardize = FALSE) {
+pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "Yellow", standardize = FALSE) {
     # Revert margin settings back to default after exit
     oldpar <- par(mar = par()$mar, oma = par()$oma)
     on.exit(par(oldpar))
+
+		# Unit formating for temperature
+		if (identical(unit, "degC")) {
+			unit_box <- "*o*C"
+			unit <- "\u00B0C"
+		} else if (identical(unit, "degF")) {
+			unit_box <- "*o*F"
+			unit <- "\u00B0F"
+		} else{
+			unit_box <- unit
+		}
+
+		# Finds and removes NaNed values from the dataset
+		nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+		x <- x[-(nans)]; y <- y[-(nans)]
 
     # residual quanities from the regression model
     if (standardize == TRUE) {
@@ -37,8 +61,7 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
     # Angular axis label positions
     lp = seq.int(40, 320, length.out = 6)
     # Angular axis labels
-    ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),
-        1), length.out = 6))
+    ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1), length.out = 6))
 
     # Maximum radial distance
     rmax <- max(residual, na.rm = TRUE)
@@ -49,22 +72,19 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
 
     # Plots the residual against an angular position
     par(oma = c(0, 0, 3, 0), cex = 0.9)
-    polar.plot(0, labels = "", radial.lim = c(0, divs[6]), show.grid = FALSE, show.grid.labels = FALSE,
-        show.radial.grid = FALSE)
+    polar.plot(0, labels = "", radial.lim = c(0, divs[6]), show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
     title(paste("\n\n", title, sep = ""), outer = TRUE)
     # Generates 'tick marks' for angular axis
     for (i in lp) {
-        polar.plot(c(0, divs[6] + n/2), c(i, i), lwd = 1, rp.type = "p", line.col = "Black",
-            add = TRUE)
+        polar.plot(c(0, divs[6] + n/2), c(i, i), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
     }
     # Generates angular labels (w/ units) and axis title
     for (i in 1:6) {
+				text <- toString(sprintf("%.2f%s", round(ln[i], 1), unit))
         if (is.element(i, 1:3)) {
-            arctext(paste(round(ln[i], 1), unit, sep = " "), middle = (lp[i] * pi)/(180),
-                radius = divs[6] + n, clockwise = TRUE)
+            arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
         } else if (is.element(i, 4:6)) {
-            arctext(paste(round(ln[i], 1), unit, sep = " "), middle = (lp[i] * pi)/(180),
-                radius = divs[6] + n, clockwise = FALSE)
+            arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
         }
     }
     arctext(axis_label, middle = 0, radius = divs[6] + n, clockwise = TRUE)
@@ -93,13 +113,8 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
     }
 
     # Representation of the residual standard deivation
-    mtext(c(parse(text = sprintf("sigma == %.3f*%s", sigma(model), unit))), at = par("usr")[1] +
-        0.05 * diff(par("usr")[1:2]))
+    mtext(c(parse(text = sprintf("sigma == %.3f*%s", sigma(model), unit_box))), at = par("usr")[1] +0.05 * diff(par("usr")[1:2]))
     rect(par("usr")[1] - 0.05 * diff(par("usr")[1:2]), -(par("usr")[1] - 0.05 * diff(par("usr")[1:2])),
         par("usr")[1] + 0.15 * diff(par("usr")[1:2]), -(par("usr")[1] + 0.01 * diff(par("usr")[1:2])),
         border = 1)
 }
-# library(plotrix); library(circlize) x <- rnorm(20, mean=10, sd=10) y <-
-# log(rnorm(20, mean=10, sd=10), base=exp(1)) nans <- c(grep('NaN', y)); nans <-
-# append(nans, grep('NaN', x)) x <- x[-(nans)]; y <- y[-(nans)]
-# pacviz(x,y,'Title','K', 'Axis Label', color1='yellow', standardize=TRUE)
