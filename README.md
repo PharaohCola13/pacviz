@@ -9,7 +9,6 @@ This function will create a Pac-Man residual plot for for regression analysis. T
 - y: Range of the data
 - title: title of the plot.
 - color1: Inner-most alternating color.
-- color2: Alternate alternating color.
 
 ## Examples
 ```
