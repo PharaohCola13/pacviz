@@ -71,18 +71,18 @@ pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,
 	if (divs[6] > 1) {draw.sector(start.degree=320, end.degree=40, rou1=0.5, rou2=0.5, lty="dashed", border="Black")}
 
 	# Representation of the residual standard deivation
-	mtext(c(parse(text=sprintf("sigma == %.3f", sigma(model)))), at=par("usr")[1]+0.05*diff(par("usr")[1:2]))
+	mtext(c(parse(text=sprintf("sigma == %.3f*%s", sigma(model), unit))), at=par("usr")[1]+0.05*diff(par("usr")[1:2]))
 	rect(par("usr")[1]-0.05*diff(par("usr")[1:2]),
 			 -(par("usr")[1]-0.05*diff(par("usr")[1:2])),
 			 par("usr")[1]+0.15*diff(par("usr")[1:2]),
 			 -(par("usr")[1]+0.01*diff(par("usr")[1:2])), border=1)
 }
-library(plotrix); library(circlize)
-
-x <- rnorm(20, mean=10, sd=10)
-y <- log(rnorm(20, mean=10, sd=10), base=exp(1))
-
-nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-x <- x[-(nans)]; y <- y[-(nans)]
-
-pacviz(x,y,"Title","units", "Axis Label", color1="yellow")
+# library(plotrix); library(circlize)
+#
+# x <- rnorm(20, mean=10, sd=10)
+# y <- log(rnorm(20, mean=10, sd=10), base=exp(1))
+#
+# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+# x <- x[-(nans)]; y <- y[-(nans)]
+#
+# pacviz(x,y,"Title","K", "Axis Label", color1="yellow", standardize=TRUE)
