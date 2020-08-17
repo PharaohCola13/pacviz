@@ -14,9 +14,9 @@
 #' @examples
 #' x <- rnorm(20, mean=0, sd=10)
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#' pacviz(x,y,"Title","units", "Axis Label")
+#' pacman(x,y,"Title","units", "Axis Label")
 #' @export
-pacviz <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,y)), color1="Yellow", standardize=FALSE){
+pacman <- function(x,y,title, unit, axis_label, model=lm(y~x, data=data.frame(x,y)), color1="Yellow", standardize=FALSE){
 	# Revert margin settings back to default after exit
 	oldpar <- par(mar=par()$mar, oma=par()$oma)
 	on.exit(par(oldpar))
