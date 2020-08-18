@@ -1,6 +1,8 @@
 #' Pac-Man Residual Function
 #'
-#' This function will create a Pac-Man residual plot for for regression analysis. The Pac-Man residual takes the absolute value of the residual values and plots them radially against the domain mapped to angles ranging from 40 to 320 degrees.
+#' A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
+#' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
+#' most model inputs. See the pacviz documentation page for more information: pharaohcola13.github.io/pacviz_book/book
 #' @param x,y Numeric data
 #' @param title Figure title
 #' @param unit String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')
@@ -25,11 +27,8 @@
 #' x <- rnorm(20, mean=0, sd=10)
 #' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
 #' pacman(x,y, 'Example 2', 'degC', "Temperature", color1="lightblue", standardize=TRUE)
-#' @note
-#' \if{latex}{\figure{fig1.pdf}{options: width=3in}}
-#' \if{latex}{\figure{fig2.pdf}{options: width=3in}}
 #' @export
-pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "Yellow", standardize = FALSE) {
+pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
     # Revert margin settings back to default after exit
     oldpar <- par(mar = par()$mar, oma = par()$oma)
     on.exit(par(oldpar))

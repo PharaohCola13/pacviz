@@ -1,0 +1,7 @@
+
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{circlize vignette}
+-->
+
+Please go to https://pharaohcola13.github.io/pacviz_book/book/ for the full vignette.

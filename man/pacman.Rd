@@ -36,10 +36,6 @@ Pac-Man residual plot
 \description{
 This function will create a Pac-Man residual plot for for regression analysis. The Pac-Man residual takes the absolute value of the residual values and plots them radially against the domain mapped to angles ranging from 40 to 320 degrees.
 }
-\note{
-\if{latex}{\figure{fig1.pdf}{options: width=3in}}
-\if{latex}{\figure{fig2.pdf}{options: width=3in}}
-}
 \examples{
 # Generic Pac-Man residual
 x <- rnorm(20, mean=0, sd=10)
