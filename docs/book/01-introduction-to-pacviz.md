@@ -4,6 +4,7 @@ This function will create a Pac-Man residual plot for for regression analysis. T
 
 
 The functions that are enclosed in this package include:
+
 - `pacman`
 
 

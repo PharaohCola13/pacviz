@@ -1,7 +1,6 @@
 #! bin/bash
 
-
-while getopts "pd" opt; do
+while getopts "pdg" opt; do
 	case "${opt}" in
     p)
         Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, cleanup=TRUE, vignettes=TRUE)"
@@ -9,7 +8,9 @@ while getopts "pd" opt; do
     d)
         cd ./docs/
         Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean=TRUE, new_session = TRUE)"
-
+			;;
+		g)
+				cd ./docs/
         git checkout gh-pages
         git add --all
         git commit -m "update book"
