@@ -2,7 +2,7 @@
 #'
 #' A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
 #' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-#' most model inputs. See the pacviz documentation page for more information: pharaohcola13.github.io/pacviz_book/book
+#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 #' @param x,y Numeric data
 #' @param title Figure title
 #' @param unit String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')

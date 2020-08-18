@@ -11,7 +11,7 @@ pacman(
   unit,
   axis_label,
   model = lm(y ~ x, data = data.frame(x, y)),
-  color1 = "Yellow",
+  color1 = "gold",
   standardize = FALSE
 )
 }
@@ -34,7 +34,9 @@ pacman(
 Pac-Man residual plot
 }
 \description{
-This function will create a Pac-Man residual plot for for regression analysis. The Pac-Man residual takes the absolute value of the residual values and plots them radially against the domain mapped to angles ranging from 40 to 320 degrees.
+A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
+radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
+most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 }
 \examples{
 # Generic Pac-Man residual
