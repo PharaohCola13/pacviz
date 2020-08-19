@@ -1,7 +1,5 @@
 # Introduction to the package
 
-NA
-
 This function will create a Pac-Man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
 
 

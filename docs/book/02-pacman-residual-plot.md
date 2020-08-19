@@ -21,6 +21,7 @@ pacman(
   standardize = FALSE
 )
 ```
+
 ## Examples
 For the following examples, the domain and range that will be processed by the
 function will be:

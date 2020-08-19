@@ -1,16 +1,21 @@
 #! bin/bash
 
-while getopts "pdg" opt; do
+while getopts "pdt" opt; do
 	case "${opt}" in
     p)
-        Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, cleanup=TRUE, vignettes=TRUE)"
-        Rscript -e "devtools::build_manual(pkg ='.', path='./man')";;
-    d)
+				Rscript -e "attachment::att_amend_desc()"
+				Rscript -e "usethis::use_tidy_description()"
+				Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)"
+        Rscript -e "devtools::build_manual(pkg ='.', path='./man')"
+				Rscript -e "usethis::use_news_md(open = rlang::is_interactive())"
+				;;
+    t)
         cd ./docs/
         Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean=TRUE, new_session = TRUE)"
 			;;
-		g)
+		d)
 				cd ./docs/
+				Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean=TRUE, new_session = TRUE)"
         git checkout gh-pages
         git add --all
         git commit -m "update book"
