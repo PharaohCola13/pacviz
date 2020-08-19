@@ -79,7 +79,8 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
     }
     # Generates angular labels (w/ units) and axis title
     for (i in 1:6) {
-				text <- toString(sprintf("%.2f%s", round(ln[i], 1), unit))
+      print(unit)
+				text <- paste(sprintf("%.2f", round(ln[i], 1)), unit, sep="")
         if (is.element(i, 1:3)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
         } else if (is.element(i, 4:6)) {
