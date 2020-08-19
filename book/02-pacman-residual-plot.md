@@ -41,8 +41,7 @@ pacman(x,y,'Example 1',
            'units',
            'Axis Label')
 ```
-
-<embed src="figures/fig1.pdf" toolbar="0" navpanes="0" scrollbar="0" width="100%" height="500px"></embed>
+<img src="examples/figures/fig1.png" width="100%" />
 
 ### Example 2
 ```R
@@ -53,3 +52,4 @@ pacman(x,y, 'Example 2',
             color1="lightblue",
             standardize=TRUE)
 ```
+<img src="examples/figures/fig2.png" width="100%" />
