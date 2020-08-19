@@ -6,7 +6,7 @@ Authors@R:
            family = "Riley",
            role = c("aut", "cre"),
            email = "spencer.riley@student.nmt.edu")
-Description: A visualization technique in R for regression analysis results, specifically residual values, based on a restricted radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+Description: See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/.
 License: MIT + file LICENSE
 Depends:
     R (>= 3.3.3)

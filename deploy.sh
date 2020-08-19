@@ -3,11 +3,10 @@
 while getopts "pdt" opt; do
 	case "${opt}" in
     p)
-				Rscript -e "attachment::att_amend_desc()"
+				# Rscript -e "attachment::att_amend_desc()"
 				Rscript -e "usethis::use_tidy_description()"
 				Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)"
         Rscript -e "devtools::build_manual(pkg ='.', path='./man')"
-				Rscript -e "usethis::use_news_md(open = rlang::is_interactive())"
 				;;
     t)
         cd ./docs/
