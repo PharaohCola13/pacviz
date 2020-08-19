@@ -9,6 +9,29 @@ This restriction is applied to allow space for radial labels. By taking the abso
 
 There are shortcomings for a visualization that views big-picture components of a model. In the case of the 'Pac-Man' residual plot we lose the ability to determine the dependence of the relationship. Through a traditional residual plot, it would be simple to determine if there was systematic or random error based on the relationship between the standard deviation and the domain of the data.   
 
+## Recommendations
+
+The discussions in this section will revolve around preferred color schemes and helpful character codes for UTF-8 symbols
+that can be used as units.
+
+### Color Scheme
+
+Since one of the two colors in the visualization is white, the other is a user input with the default being `gold`.
+The following colors are predefined in R, with the whole list available [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf),
+and are a good fit in terms of contrast and readability. 
+
+- `lightskyblue`
+- `lightsteelblue`
+- `darksalmon`
+- `palegreen`
+- `gray86`
+- `plum`
+
+### Characters
+
+- Angstrom: `\uc5`
+- More will be added
+
 ## Usage
 ```R
 pacman(
@@ -45,7 +68,8 @@ pacman(x,y,'Example 1',
 
 ### Example 2
 ```R
-# Pac-Man residual using alternate color, residual standardization, and temperature units
+# Pac-Man residual using alternate color,
+# residual standardization, and temperature units
 pacman(x,y, 'Example 2',
             'degC',
             "Temperature",
@@ -53,3 +77,16 @@ pacman(x,y, 'Example 2',
             standardize=TRUE)
 ```
 <img src="examples/figures/fig2.png" width="100%" />
+
+
+### Example 3
+```R
+# Pac-Man residual using alternate color,
+# a quadratic model, and a UTF8 character for units
+pacman(x,y, 'Example 3',
+            "\uc5",
+            "Distance",
+            model=lm(y~poly(x,2)),
+            color1="darksalmon")
+```
+<img src="examples/figures/fig3.png" width="100%" />

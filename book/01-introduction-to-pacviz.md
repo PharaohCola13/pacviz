@@ -1,6 +1,6 @@
 # Introduction to the package
 
-This function will create a Pac-Man residual plot for for regression analysis. The data will run through a linear regression and plot the resulting factors of standard deviation against an arbitrary angular measurement.
+See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/.
 
 
 The functions that are enclosed in this package include:
@@ -20,4 +20,4 @@ install.package('pacviz')
 ```
 
 ## Package Dependencies
-GlobalOptions, shape, colorspace, plotrix, circlize
+GlobalOptions, shape, colorspace, circlize, plotrix

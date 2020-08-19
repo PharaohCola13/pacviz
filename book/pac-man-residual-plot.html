@@ -132,10 +132,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="introduction-to-the-package.html"><a href="introduction-to-the-package.html#package-dependencies"><i class="fa fa-check"></i><b>1.2</b> Package Dependencies</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html"><i class="fa fa-check"></i><b>2</b> Pac-Man Residual Plot</a><ul>
-<li class="chapter" data-level="2.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#usage"><i class="fa fa-check"></i><b>2.1</b> Usage</a></li>
-<li class="chapter" data-level="2.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#examples"><i class="fa fa-check"></i><b>2.2</b> Examples</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-1"><i class="fa fa-check"></i><b>2.2.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.2.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-2"><i class="fa fa-check"></i><b>2.2.2</b> Example 2</a></li>
+<li class="chapter" data-level="2.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#recommendations"><i class="fa fa-check"></i><b>2.1</b> Recommendations</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#color-scheme"><i class="fa fa-check"></i><b>2.1.1</b> Color Scheme</a></li>
+<li class="chapter" data-level="2.1.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#characters"><i class="fa fa-check"></i><b>2.1.2</b> Characters</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#usage"><i class="fa fa-check"></i><b>2.2</b> Usage</a></li>
+<li class="chapter" data-level="2.3" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#examples"><i class="fa fa-check"></i><b>2.3</b> Examples</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-1"><i class="fa fa-check"></i><b>2.3.1</b> Example 1</a></li>
+<li class="chapter" data-level="2.3.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-2"><i class="fa fa-check"></i><b>2.3.2</b> Example 2</a></li>
+<li class="chapter" data-level="2.3.3" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-3"><i class="fa fa-check"></i><b>2.3.3</b> Example 3</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="releases.html"><a href="releases.html"><i class="fa fa-check"></i><b>3</b> Releases</a></li>
@@ -165,8 +170,34 @@ X: \rightarrow [40, 320]\, .
 \end{equation}\]</span>
 This restriction is applied to allow space for radial labels. By taking the absolute value of the residual values on the radial coordinate system, we can observe the overall performance of the model with relative ease.</p>
 <p>There are shortcomings for a visualization that views big-picture components of a model. In the case of the ‘Pac-Man’ residual plot we lose the ability to determine the dependence of the relationship. Through a traditional residual plot, it would be simple to determine if there was systematic or random error based on the relationship between the standard deviation and the domain of the data.</p>
+<div id="recommendations" class="section level2">
+<h2><span class="header-section-number">2.1</span> Recommendations</h2>
+<p>The discussions in this section will revolve around preferred color schemes and helpful character codes for UTF-8 symbols
+that can be used as units.</p>
+<div id="color-scheme" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Color Scheme</h3>
+<p>Since one of the two colors in the visualization is white, the other is a user input with the default being <code>gold</code>.
+The following colors are predefined in R, with the whole list available <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>,
+and are a good fit in terms of contrast and readability.</p>
+<ul>
+<li><code>lightskyblue</code></li>
+<li><code>lightsteelblue</code></li>
+<li><code>darksalmon</code></li>
+<li><code>palegreen</code></li>
+<li><code>gray86</code></li>
+<li><code>plum</code></li>
+</ul>
+</div>
+<div id="characters" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Characters</h3>
+<ul>
+<li>Angstrom: <code>\uc5</code></li>
+<li>More will be added</li>
+</ul>
+</div>
+</div>
 <div id="usage" class="section level2">
-<h2><span class="header-section-number">2.1</span> Usage</h2>
+<h2><span class="header-section-number">2.2</span> Usage</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">pacman</span>(</a>
 <a class="sourceLine" id="cb3-2" title="2">  x,y,</a>
 <a class="sourceLine" id="cb3-3" title="3">  title,</a>
@@ -178,14 +209,14 @@ This restriction is applied to allow space for radial labels. By taking the abso
 <a class="sourceLine" id="cb3-9" title="9">)</a></code></pre></div>
 </div>
 <div id="examples" class="section level2">
-<h2><span class="header-section-number">2.2</span> Examples</h2>
+<h2><span class="header-section-number">2.3</span> Examples</h2>
 <p>For the following examples, the domain and range that will be processed by the
 function will be:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">y &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">10</span>), <span class="dt">base=</span><span class="kw">exp</span>(<span class="dv">1</span>))</a></code></pre></div>
 <p>It should be noted that these values do change after every run.</p>
 <div id="example-1" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Example 1</h3>
+<h3><span class="header-section-number">2.3.1</span> Example 1</h3>
 <p>In the below snippet, we use</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Generic Pac-Man residual</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">pacman</span>(x,y,<span class="st">&#39;Example 1&#39;</span>,</a>
@@ -194,14 +225,26 @@ function will be:</p>
 <p><img src="examples/figures/fig1.png" width="100%" /></p>
 </div>
 <div id="example-2" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Example 2</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Pac-Man residual using alternate color, residual standardization, and temperature units</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">pacman</span>(x,y, <span class="st">&#39;Example 2&#39;</span>,</a>
-<a class="sourceLine" id="cb6-3" title="3">            <span class="st">&#39;degC&#39;</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">            <span class="st">&quot;Temperature&quot;</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">            <span class="dt">color1=</span><span class="st">&quot;lightblue&quot;</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">            <span class="dt">standardize=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<h3><span class="header-section-number">2.3.2</span> Example 2</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Pac-Man residual using alternate color,</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co"># residual standardization, and temperature units</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">pacman</span>(x,y, <span class="st">&#39;Example 2&#39;</span>,</a>
+<a class="sourceLine" id="cb6-4" title="4">            <span class="st">&#39;degC&#39;</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5">            <span class="st">&quot;Temperature&quot;</span>,</a>
+<a class="sourceLine" id="cb6-6" title="6">            <span class="dt">color1=</span><span class="st">&quot;lightblue&quot;</span>,</a>
+<a class="sourceLine" id="cb6-7" title="7">            <span class="dt">standardize=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="examples/figures/fig2.png" width="100%" /></p>
+</div>
+<div id="example-3" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Example 3</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Pac-Man residual using alternate color,</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># a quadratic model, and a UTF8 character for units</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="kw">pacman</span>(x,y, <span class="st">&#39;Example 3&#39;</span>,</a>
+<a class="sourceLine" id="cb7-4" title="4">            <span class="st">&quot;\uc5&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" title="5">            <span class="st">&quot;Distance&quot;</span>,</a>
+<a class="sourceLine" id="cb7-6" title="6">            <span class="dt">model=</span><span class="kw">lm</span>(y<span class="op">~</span><span class="kw">poly</span>(x,<span class="dv">2</span>)),</a>
+<a class="sourceLine" id="cb7-7" title="7">            <span class="dt">color1=</span><span class="st">&quot;darksalmon&quot;</span>)</a></code></pre></div>
+<p><img src="examples/figures/fig3.png" width="100%" /></p>
 
 </div>
 </div>
