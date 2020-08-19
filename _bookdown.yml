@@ -1,0 +1,9 @@
+new_session: yes
+
+book_filename: "pacviz-book"
+language:
+  ui:
+    chapter_name: "Chapter "
+
+output_dir: "book"
+delete_merged_file: true
