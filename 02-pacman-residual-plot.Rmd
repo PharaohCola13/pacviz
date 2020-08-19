@@ -21,7 +21,6 @@ pacman(
   standardize = FALSE
 )
 ```
-`r yaml::yaml.load_file("../R/pacman.r")`
 
 ## Examples
 For the following examples, the domain and range that will be processed by the
