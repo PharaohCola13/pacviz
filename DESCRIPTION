@@ -6,7 +6,7 @@ Authors@R:
            family = "Riley",
            role = c("aut", "cre"),
            email = "spencer.riley@student.nmt.edu")
-Description: See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/.
+Description: 
 License: MIT + file LICENSE
 Depends:
     R (>= 3.3.3)
