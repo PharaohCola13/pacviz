@@ -89,58 +89,10 @@ It should be noted that these values do change after every run.
 ### Example 1
 In the below snippet, we use
 
-```R
-# Generic Pac-Man residual
-pacman(x,y,'Example 1',
-           'units',
-           'Axis Label')
-```
 
-\begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{examples/figures/fig1} 
 
-}
 
-\caption{Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.}(\#fig:exxample1)
-\end{figure}
-\newpage
 
-### Example 2
-```R
-# Pac-Man residual using alternate color,
-# residual standardization, and temperature units
-pacman(x,y, 'Example 2',
-            'degC',
-            "Temperature",
-            color1="lightblue",
-            standardize=TRUE)
-```
-\begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{examples/figures/fig2} 
 
-}
-
-\caption{Graphical result of Example 2.}(\#fig:unnamed-chunk-2)
-\end{figure}
-\newpage
-
-### Example 3
-```R
-# Pac-Man residual using alternate color,
-# a quadratic model, and a UTF8 character for units
-pacman(x,y, 'Example 3',
-            "\uc5",
-            "Distance",
-            model=lm(y~poly(x,2)),
-            color1="darksalmon")
-```
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{examples/figures/fig3} 
-
-}
-
-\caption{Graphical result of Example 3.}(\#fig:unnamed-chunk-3)
-\end{figure}

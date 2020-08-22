@@ -66,24 +66,26 @@ x <- rnorm(20, mean=0, sd=10)
 y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
 ```
 
-It should be noted that these values do change after every run.
-\newpage
+```{r, dev='svglite'}
+head(cars)
+model <- lm(dist ~ speed, data=cars)
+```
 
+It should be noted that these values do change after every run.
 ### Example 1
 In the below snippet, we use
 
-```R
+```{r, dev='svglite'}
 # Generic Pac-Man residual
-pacman(x,y,'Example 1',
-           'units',
-           'Axis Label')
+pacviz::pacman(cars$speed,cars$dist,
+            'Example 1',
+            'units',
+            'Axis Label')
 ```
-<img src="examples/figures/fig1.png" width="100%" />
-\begin{center}
-  \begin{figure}
-    \includegraphics[width=\textwidth]{examples/figures/fig1.png}
-  \end{figure}
-\end{center}
+
+```{r, exxample1, out.width="100%", dev='svglite', fig.cap='Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.', fig.align='center', echo=FALSE}
+knitr::include_graphics("examples/figures/fig1.png")
+```
 \newpage
 
 ### Example 2
@@ -96,12 +98,9 @@ pacman(x,y, 'Example 2',
             color1="lightblue",
             standardize=TRUE)
 ```
-<img src="examples/figures/fig2.png" width="100%" />
-\begin{center}
-  \begin{figure}
-    \includegraphics[width=\textwidth]{examples/figures/fig2.png}
-  \end{figure}
-\end{center}
+```{r, out.width="100%", fig.cap='Graphical result of Example 2.', dev='svglite', fig.align='center', echo=FALSE}
+knitr::include_graphics("examples/figures/fig2.png")
+```
 \newpage
 
 ### Example 3
@@ -114,10 +113,6 @@ pacman(x,y, 'Example 3',
             model=lm(y~poly(x,2)),
             color1="darksalmon")
 ```
-<img src="examples/figures/fig3.png" width="100%" />
-\begin{center}
-  \begin{figure}
-    \includegraphics[width=\textwidth]{examples/figures/fig3.png}
-  \end{figure}
-\end{center}
-\newpage
+```{r, out.width="100%", fig.cap='Graphical result of Example 3.', dev='svglite', fig.align='center', echo=FALSE}
+knitr::include_graphics("examples/figures/fig3.png")
+```
