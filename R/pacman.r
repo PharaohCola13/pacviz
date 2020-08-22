@@ -44,9 +44,9 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
 			unit_box <- unit
 		}
 
-		# Finds and removes NaNed values from the dataset
-		nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-		x <- x[-(nans)]; y <- y[-(nans)]
+		# # Finds and removes NaNed values from the dataset
+		# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+		# x <- x[-(nans)]; y <- y[-(nans)]
 
     # residual quanities from the regression model
     if (standardize == TRUE) {
