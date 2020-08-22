@@ -14,10 +14,12 @@ For the most up-to-date version of the package, install it directly from GitHub.
 ```R
 devtools::install_github("PharaohCola13/pacviz")
 ```
-Through CRAN
+Through CRAN (Not yet available)
 ```R
 install.package('pacviz')
 ```
 
 ## Package Dependencies
-`r library(gtools);getDependencies("pacviz", dependencies = c("Depends", "Imports"), available=FALSE)`
+`r installed.packages()["pacviz","Depends"]`
+
+Packages: `r installed.packages()["pacviz","Imports"]`

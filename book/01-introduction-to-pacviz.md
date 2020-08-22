@@ -14,10 +14,12 @@ For the most up-to-date version of the package, install it directly from GitHub.
 ```R
 devtools::install_github("PharaohCola13/pacviz")
 ```
-Through CRAN
+Through CRAN (Not yet available)
 ```R
 install.package('pacviz')
 ```
 
 ## Package Dependencies
-GlobalOptions, shape, colorspace, circlize, plotrix
+R (>= 3.3.3)
+
+Packages: circlize, graphics, plotrix, stats, utils
