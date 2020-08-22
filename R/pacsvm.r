@@ -70,12 +70,12 @@ pacsvm <- function(x,y,lab, title, kernel='linear', color1 = "lightpink", color2
     abline(-(cf[1] - 1)/cf[3], -cf[2]/cf[3], col = "blue")
     points(svmfit$SV, pch = 5, cex = 2)
 }
-fname       <- read.table(file="../../Precipitable-Water-Model/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
+# fname       <- read.table(file="../../Precipitable-Water-Model/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
 
-library(e1071); library(plotrix); library(circlize)
-x <- fname[,2]
-y <- fname[,3]
+# library(e1071); library(plotrix); library(circlize)
+# x <- fname[,2]
+# y <- fname[,3]
 
-l <- fname[,5]
-pacsvm(x,y, l, "Function Test")
-warnings()
+# l <- fname[,5]
+# pacsvm(x,y, l, "Function Test")
+# warnings()
