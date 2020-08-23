@@ -52,38 +52,35 @@ pacman(
   unit,
   axis_label,
   model = lm(y ~ x, data = data.frame(x, y)),
-  color1 = "Yellow",
+  color1 = "gold",
   standardize = FALSE
 )
 ```
 
 ## Examples
+
 For the following examples, the domain and range that will be processed by the
 function will be:
 
 ```R
-x <- rnorm(20, mean=0, sd=10)
-y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-```
+data("cars")
+x <- cars$dist
+y <- cars$speed
 
-```{r, dev='svglite'}
-head(cars)
-model <- lm(dist ~ speed, data=cars)
 ```
+The units associated with each of the plots are not accurate, they simply demonstrate the capabilities of the function to use a variety of inputs.
 
-It should be noted that these values do change after every run.
 ### Example 1
 In the below snippet, we use
 
-```{r, dev='svglite'}
+```R
 # Generic Pac-Man residual
-pacviz::pacman(cars$speed,cars$dist,
-            'Example 1',
-            'units',
+pacman(x,y, 'Example 1',
+            'm/s',
             'Axis Label')
 ```
 
-```{r, exxample1, out.width="100%", dev='svglite', fig.cap='Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.', fig.align='center', echo=FALSE}
+```{r, example1, out.width="100%", dev='pdf', fig.cap='Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.', fig.align='center', echo=FALSE}
 knitr::include_graphics("examples/figures/fig1.png")
 ```
 \newpage
@@ -98,6 +95,7 @@ pacman(x,y, 'Example 2',
             color1="lightblue",
             standardize=TRUE)
 ```
+
 ```{r, out.width="100%", fig.cap='Graphical result of Example 2.', dev='svglite', fig.align='center', echo=FALSE}
 knitr::include_graphics("examples/figures/fig2.png")
 ```

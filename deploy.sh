@@ -1,16 +1,16 @@
 #! bin/bash
 
+rm book/pacviz-book.pdf
+Rscript ./examples/examples.r
 for pdfile in ./examples/figures/*.pdf ; do
 	pdftoppm "${pdfile}" "${pdfile%.*}" -png
 	mv "${pdfile%.*}-1.png" "${pdfile%.*}.png"
 done
 
-
 while getopts "dt" opt; do
 	case "${opt}" in
     t)
-				rm book/pacviz-book.pdf
-        Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean=TRUE, new_session = TRUE)"
+				Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', clean=TRUE, new_session = TRUE)"
 				Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book', clean=TRUE, new_session = TRUE)"
 
 				pdfunite images/cover.pdf book/pacviz-book.pdf book/out.pdf

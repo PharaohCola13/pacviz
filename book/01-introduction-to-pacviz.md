@@ -1,11 +1,12 @@
 # Introduction to the package
 
-See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/.
+
 
 
 The functions that are enclosed in this package include:
 
 - `pacman`
+- `pacsvm` *(In development)*
 
 
 ## Installation Guide

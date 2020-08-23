@@ -52,48 +52,32 @@ pacman(
   unit,
   axis_label,
   model = lm(y ~ x, data = data.frame(x, y)),
-  color1 = "Yellow",
+  color1 = "gold",
   standardize = FALSE
 )
 ```
 
 ## Examples
+
 For the following examples, the domain and range that will be processed by the
 function will be:
 
 ```R
-x <- rnorm(20, mean=0, sd=10)
-y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-```
-
-
-```r
-head(cars)
-```
+data("cars")
+x <- cars$dist
+y <- cars$speed
 
 ```
-##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10
-```
+The units associated with each of the plots are not accurate, they simply demonstrate the capabilities of the function to use a variety of inputs.
 
-```r
-model <- lm(dist ~ speed, data=cars)
-```
-
-It should be noted that these values do change after every run.
 ### Example 1
 In the below snippet, we use
 
 ```R
 # Generic Pac-Man residual
-pacman(x,y,'Example 1',
-           'units',
-           'Axis Label')
+pacman(x,y, 'Example 1',
+            'm/s',
+            'Axis Label')
 ```
 
 \begin{figure}
@@ -102,7 +86,7 @@ pacman(x,y,'Example 1',
 
 }
 
-\caption{Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.}(\#fig:exxample1)
+\caption{Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.}(\#fig:example1)
 \end{figure}
 \newpage
 
@@ -116,13 +100,14 @@ pacman(x,y, 'Example 2',
             color1="lightblue",
             standardize=TRUE)
 ```
+
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{examples/figures/fig2} 
 
 }
 
-\caption{Graphical result of Example 2.}(\#fig:unnamed-chunk-2)
+\caption{Graphical result of Example 2.}(\#fig:unnamed-chunk-1)
 \end{figure}
 \newpage
 
@@ -142,5 +127,5 @@ pacman(x,y, 'Example 3',
 
 }
 
-\caption{Graphical result of Example 3.}(\#fig:unnamed-chunk-3)
+\caption{Graphical result of Example 3.}(\#fig:unnamed-chunk-2)
 \end{figure}

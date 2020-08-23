@@ -17,7 +17,7 @@ output:
     dev: svglite
     highlight: monochrome
     config:
-      download: [pdf, epub, mobi]
+      download: pdf
       sharing:
         github: yes
         facebook: no

@@ -6,6 +6,7 @@
 The functions that are enclosed in this package include:
 
 - `pacman`
+- `pacsvm` *(In development)*
 
 
 ## Installation Guide
