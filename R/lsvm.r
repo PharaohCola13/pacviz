@@ -7,24 +7,23 @@
 #' @param l Numeric labels data
 #' @param title Figure title
 #' @param train_size Fraction of total data that the SVM will train on
+#' @param rand_state Value of the random state used to set the seed
 #' @return Pac-Man SVM
 #' @keywords machine-learning visualization
 #' @import plotrix
 #' @importFrom graphics par text mtext rect abline plot
 #' @importFrom stats coef resid predict median
 #' @importFrom e1071 svm
-#' @importFrom pacviz linMap rad2deg svm.partition
 #' @export
-
 lsvm <- function(x,y,l, title, train_size=0.7, rand_state=sample(1:2^15, 1)) {
 
-    pre       <- svm.partition(x,y,l, train_size, rand_state)
+    pre       <- pacviz::svm.partition(x,y,l, train_size, rand_state)
     train     <- pre$train
     test      <- pre$test
     train_idx <- pre$train_idx
 
     svmfit <- svm(x=train[1:2], y=train[3],type="C-classification", kernel="linear", scale=FALSE)
-    pred <- predict(svmfit, test[1:2])
+    pred  <- predict(svmfit, test[1:2])
 
     plot(x,y, pch=16, col=ifelse(l[1:length(l)]==sort(unique(train[3])[,1])[1], "blue", "red"))
 
@@ -36,9 +35,26 @@ lsvm <- function(x,y,l, title, train_size=0.7, rand_state=sample(1:2^15, 1)) {
     abline(-(cf[1] + 1)/cf[3], -cf[2]/cf[3], col = "black", lty="dashed")
     abline(-(cf[1] - 1)/cf[3], -cf[2]/cf[3], col = "black", lty="dashed")
 }
-
-pac.lsvm <- function(x,y,lab, title, axis_label, rand_state=sample(1:2^15, 1), color1 = "lightpink", color2= "lightsteelblue", color3="plum") {
-  pre       <- svm.partition(x,y,lab, 0.7, rand_state)
+#' @title Pac-Man SVM
+#'
+#' @description A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
+#' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
+#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+#' @param x,y Numeric data
+#' @param l Numeric labels data
+#' @param title Figure title
+#' @param axis_label Label for the axis
+#' @param train_size Fraction of total data that the SVM will train on
+#' @param rand_state Value of the random state used to set the seed
+#' @return Pac-Man SVM
+#' @keywords machine-learning visualization
+#' @import plotrix
+#' @importFrom graphics par text mtext rect abline plot
+#' @importFrom stats coef resid predict median
+#' @importFrom e1071 svm
+#' @export
+pac.lsvm <- function(x,y,l, title, axis_label, train_size=0.7, rand_state=sample(1:2^15, 1)) {
+  pre       <- pacviz::svm.partition(x,y,l, train_size, rand_state)
   train     <- pre$train
   test      <- pre$test
   train_idx <- pre$train_idx
@@ -47,8 +63,8 @@ pac.lsvm <- function(x,y,lab, title, axis_label, rand_state=sample(1:2^15, 1), c
   pred <- predict(svmfit, test[1:2])
   cf <- coef(svmfit)
 
-  t <- linMap(x, 40, 320)
-  r <- linMap(y,1, 0)
+  t <- pacviz::linMap(x, 40, 320)
+  r <- pacviz::linMap(y,1, 0)
 
   # Angular axis label positions
   lp = seq.int(40, 320, length.out = 6)
@@ -56,7 +72,7 @@ pac.lsvm <- function(x,y,lab, title, axis_label, rand_state=sample(1:2^15, 1), c
   ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1), length.out = 6))
 
   db_x <- train[1]
-  db_t <- rad2deg(atan(-cf[1]/cf[3] * db_x - cf[2]/cf[3])/db_x)
+  db_t <- pacviz::rad2deg(atan(-cf[1]/cf[3] * db_x - cf[2]/cf[3])/db_x)
   db_r <- -cf[1]/cf[3] * db_t - cf[2]/cf[3]
 
   s1_r <- -(cf[1] + 1)/cf[3] * db_t - cf[2]/cf[3]
@@ -108,7 +124,7 @@ pac.lsvm <- function(x,y,lab, title, axis_label, rand_state=sample(1:2^15, 1), c
   polar.plot(s1_r,db_t, lwd = 1, rp.type = "l", line.col = "black", radial.lim = c(0, divs[4]), add = TRUE)
   # draw.sector(start.degree = max(db_t), end.degree = min(db_t), rou1 = 0, rou2 = divs[6],
   #     lty = "dashed", border = "Black", col=color1)
-  polar.plot(r,t, rp.type = "s", point.col=ifelse(lab[1:length(lab)]==sort(unique(train[3])[,1])[1], "blue", "red"), point.symbols=16, add=TRUE)
+  polar.plot(r,t, rp.type = "s", point.col=ifelse(l[1:length(l)]==sort(unique(train[3])[,1])[1], "blue", "red"), point.symbols=16, add=TRUE)
 }
 
 # fname <- read.table(file="https://raw.githubusercontent.com/physicsgoddess1972/Precipitable-Water-Model/master/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)

@@ -6,7 +6,8 @@
 #' @param x,y Numeric data
 #' @param l Numeric labels data
 #' @param train_size Fraction of total data that the SVM will train on
-#' @return Pac-Man SVM
+#' @param rand_state Value of the random state used to set the seed
+#' @return Data Partition
 #' @keywords machine-learning visualization
 #' @example
 #' data("cars")
@@ -38,9 +39,7 @@ svm.partition <- function(x,y,l, train_size=0.7, rand_state=sample(1:2^15, 1)){
 #' @title Pac-Man SVM
 #'
 #' @description Conversion between radians and degrees
-#' @param x,y Numeric data
-#' @param l Numeric labels data
-#' @param train_size Fraction of total data that the SVM will train on
+#' @param rad Angle in radians
 #' @return Pac-Man SVM
 #' @keywords machine-learning visualization
 #' @export
@@ -49,9 +48,7 @@ rad2deg <- function(rad) {(rad * 180) / (pi)}
 #' @title Pac-Man SVM
 #'
 #' @description Conversion between degrees and radians
-#' @param x,y Numeric data
-#' @param l Numeric labels data
-#' @param train_size Fraction of total data that the SVM will train on
+#' @param deg Angle in degrees
 #' @return Pac-Man SVM
 #' @keywords machine-learning visualization
 #' @export
@@ -59,9 +56,9 @@ deg2rad <- function(deg) {(deg * pi) / (180)}
 #' @title Pac-Man SVM
 #'
 #' @description linear map
-#' @param x,y Numeric data
-#' @param l Numeric labels data
-#' @param train_size Fraction of total data that the SVM will train on
+#' @param x Range of values to be mapped
+#' @param i Lowest value
+#' @param f Largest value
 #' @return Pac-Man SVM
 #' @keywords machine-learning visualization
 #' @export

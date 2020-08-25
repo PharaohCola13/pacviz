@@ -4,7 +4,7 @@
 \alias{svm.partition}
 \title{Pac-Man SVM}
 \usage{
-\method{svm}{partition}(x, y, l, train_size)
+\method{svm}{partition}(x, y, l, train_size = 0.7, rand_state = sample(1:2^15, 1))
 }
 \arguments{
 \item{x, y}{Numeric data}
@@ -12,9 +12,11 @@
 \item{l}{Numeric labels data}
 
 \item{train_size}{Fraction of total data that the SVM will train on}
+
+\item{rand_state}{Value of the random state used to set the seed}
 }
 \value{
-Pac-Man SVM
+Data Partition
 }
 \description{
 A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
