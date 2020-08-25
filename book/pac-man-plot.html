@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Releases | pacviz</title>
-  <meta name="description" content="Chapter 5 Releases | pacviz" />
+  <title>Chapter 2 Pac-Man Plot | pacviz</title>
+  <meta name="description" content="Chapter 2 Pac-Man Plot | pacviz" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Releases | pacviz" />
+  <meta property="og:title" content="Chapter 2 Pac-Man Plot | pacviz" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://pharaohcola13.github.io/pacviz/book" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="PharaohCola13/pacviz" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Releases | pacviz" />
+  <meta name="twitter:title" content="Chapter 2 Pac-Man Plot | pacviz" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="support-vector-machines.html"/>
-
+<link rel="prev" href="introduction-to-the-package.html"/>
+<link rel="next" href="pac-man-residual-plot.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -173,12 +173,33 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="releases" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Releases</h1>
-<div id="v1.0-blinky" class="section level2 unnumbered">
-<h2>V1.0 <em>Blinky</em></h2>
-<p>This is the initial release of the <code>pacviz</code> R package.</p>
-<p><strong>Coming Soon</strong></p>
+<div id="pac-man-plot" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Pac-Man Plot</h1>
+<div id="description" class="section level2">
+<h2><span class="header-section-number">2.1</span> Description</h2>
+</div>
+<div id="usage" class="section level2">
+<h2><span class="header-section-number">2.2</span> Usage</h2>
+<p>The function is setup to implement an arbitrary regression model and supports residual standardization.
+As we have discussed above,</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">pac.plot</span>(</a>
+<a class="sourceLine" id="cb5-2" title="2">  x,y,</a>
+<a class="sourceLine" id="cb5-3" title="3">  title,</a>
+<a class="sourceLine" id="cb5-4" title="4">  xaxislabel,</a>
+<a class="sourceLine" id="cb5-5" title="5">  yaxislabel,</a>
+<a class="sourceLine" id="cb5-6" title="6">  xunits,</a>
+<a class="sourceLine" id="cb5-7" title="7">  yunit,</a>
+<a class="sourceLine" id="cb5-8" title="8">  <span class="dt">color1 =</span> <span class="st">&quot;gold&quot;</span>,</a>
+<a class="sourceLine" id="cb5-9" title="9">)</a></code></pre></div>
+</div>
+<div id="examples" class="section level2">
+<h2><span class="header-section-number">2.3</span> Examples</h2>
+<p>For the following examples, the domain and range that will be processed by the
+function will be:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">data</span>(<span class="st">&quot;cars&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2">x &lt;-<span class="st"> </span>cars<span class="op">$</span>dist</a>
+<a class="sourceLine" id="cb6-3" title="3">y &lt;-<span class="st"> </span>cars<span class="op">$</span>speed</a></code></pre></div>
+<p>The units associated with each of the plots are not accurate, they simply demonstrate the capabilities of the function to use a variety of inputs.</p>
 
 </div>
 </div>
@@ -187,8 +208,8 @@ code span.wa { font-style: italic; } /* Warning */
           </div>
         </div>
       </div>
-<a href="support-vector-machines.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="introduction-to-the-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pac-man-residual-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

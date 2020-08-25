@@ -1,7 +1,7 @@
 ---
 title: "pacviz"
 author: "Spencer Riley"
-date: "last revised on 2020-08-22"
+date: "last revised on 2020-08-24"
 site: bookdown::gitbook
 favicon: "favicon.ico"
 documentclass: book
