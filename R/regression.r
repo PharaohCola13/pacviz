@@ -13,22 +13,11 @@
 #' @return Pac-Man residual plot
 #' @keywords regression visualization
 #' @import plotrix circlize
-#' @importFrom graphics par text mtext rect
-#' @importFrom stats coef lm nls resid predict sigma rstandard
+#' @importFrom graphics par text mtext rect abline plot
+#' @importFrom stats coef lm nls resid predict sigma rstandard median
 #' @importFrom utils packageDescription
-#' @examples
-#' # Generic Pac-Man residual
-#' x <- rnorm(20, mean=0, sd=10)
-#' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#' pacman(x,y,'Example 1','units', 'Axis Label')
-#' @examples
-#'
-#' # Pac-Man residual using alternate color, residual standardization, and temperature units
-#' x <- rnorm(20, mean=0, sd=10)
-#' y <- log(rnorm(20, mean=0, sd=10), base=exp(1))
-#' pacman(x,y, 'Example 2', 'degC', "Temperature", color1="lightblue", standardize=TRUE)
 #' @export
-pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
+pac.resid <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
     # Revert margin settings back to default after exit
     oldpar <- par(mar = par()$mar, oma = par()$oma)
     on.exit(par(oldpar))
@@ -44,10 +33,6 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
 			unit_box <- unit
 		}
 
-		# # Finds and removes NaNed values from the dataset
-		# nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
-		# x <- x[-(nans)]; y <- y[-(nans)]
-
     # residual quanities from the regression model
     if (standardize == TRUE) {
         residual <- abs(rstandard(model))
@@ -55,7 +40,7 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
         residual <- abs(resid(model))
     }
     # sequence used for angular position
-    t <- (x - min(x))/max(x - min(x)) * (40 - 320) + 320
+    t <-linMap(x, 40, 320)
 
     # Angular axis label positions
     lp = seq.int(40, 320, length.out = 6)
@@ -96,7 +81,8 @@ pacman <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.
             color <- "White"
         }
         draw.circle(0, 0, radius = divs[i], col = color)
-        text(divs[i + 1] - n, 0, labels = bquote(.(divs[i + 1] * 2) * sigma))
+        rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
+        text(rlab, 0, labels = bquote(.(divs[i + 1] * 2) * sigma))
     }
     # Draws the label space
     polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd = 1, rp.type = "p", line.col = "black",
