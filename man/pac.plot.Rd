@@ -4,20 +4,14 @@
 \alias{pac.plot}
 \title{Pac-Man SVM}
 \usage{
-pac.plot(x, y, title, xaxislabel, yaxislabel, xunits, yunits, color1 = "gold")
+pac.plot(x, y, title, taxis, raxis, color1 = "gold")
 }
 \arguments{
 \item{x, y}{Numeric data}
 
 \item{title}{Figure title}
 
-\item{xaxislabel}{Angular axis label}
-
-\item{yaxislabel}{Radial axis label}
-
-\item{xunits}{String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')}
-
-\item{yunits}{String to define units on the radial axis (For temperature measurements use 'degC' or 'degF')}
+\item{taxis, raxis}{Vector with the first entry being the axis label and the second entry being units}
 
 \item{color1}{Color value as string or rgb}
 }
@@ -32,7 +26,6 @@ most model inputs. See the pacviz documentation page for more information: https
 \examples{
 # Generic Pac-Man residual
 data("cars")
-pac.plot(cars$dist,cars$speed, 'Example 1', "Distance", "Speed", 'm', 'm/s')
+pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 }
-\keyword{machine-learning}
 \keyword{visualization}

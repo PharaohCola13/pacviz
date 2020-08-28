@@ -5,8 +5,7 @@
 #' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 #' @param x,y Numeric data
 #' @param title Figure title
-#' @param unit String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')
-#' @param axis_label Angular axis label
+#' @param taxis Vector with the first entry being the axis label and the second entry being units
 #' @param model An object for which the extraction of model residuals is meaningful.
 #' @param color1 Color value as string or rgb
 #' @param standardize Boolean to standardize the residual value
@@ -17,21 +16,12 @@
 #' @importFrom stats coef lm nls resid predict sigma rstandard median
 #' @importFrom utils packageDescription
 #' @export
-pac.resid <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
+pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
     # Revert margin settings back to default after exit
     oldpar <- par(mar = par()$mar, oma = par()$oma)
     on.exit(par(oldpar))
 
-		# Unit formating for temperature
-		if (identical(unit, "degC")) {
-			unit_box <- "*o*C"
-			unit <- "\u00B0C"
-		} else if (identical(unit, "degF")) {
-			unit_box <- "*o*F"
-			unit <- "\u00B0F"
-		} else{
-			unit_box <- unit
-		}
+    tunit <- unit_format(taxis[2])
 
     # residual quanities from the regression model
     if (standardize == TRUE) {
@@ -64,14 +54,14 @@ pac.resid <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = da
     }
     # Generates angular labels (w/ units) and axis title
     for (i in 1:6) {
-				text <- paste(sprintf("%.2f", round(ln[i], 1)), unit, sep="")
+				text <- paste(sprintf("%.2f", round(ln[i], 1)), tunit$unit, sep="")
         if (is.element(i, 1:3)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
         } else if (is.element(i, 4:6)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
         }
     }
-    arctext(axis_label, middle = 0, radius = divs[6] + n, clockwise = TRUE)
+    arctext(taxis[1], middle = 0, radius = divs[6] + n, clockwise = TRUE)
 
     # Draws the circles and the labels
     for (i in 6:1) {
@@ -98,7 +88,7 @@ pac.resid <- function(x, y, title, unit, axis_label, model = lm(y ~ x, data = da
     }
 
     # Representation of the residual standard deivation
-    mtext(c(parse(text = sprintf("sigma == %.3f*%s", sigma(model), unit_box))), at = par("usr")[1] +0.05 * diff(par("usr")[1:2]))
+    mtext(c(parse(text = sprintf("sigma == %.3f*%s", sigma(model), tunit$unit_box))), at = par("usr")[1] +0.05 * diff(par("usr")[1:2]))
     rect(par("usr")[1] - 0.05 * diff(par("usr")[1:2]), -(par("usr")[1] - 0.05 * diff(par("usr")[1:2])),
         par("usr")[1] + 0.15 * diff(par("usr")[1:2]), -(par("usr")[1] + 0.01 * diff(par("usr")[1:2])),
         border = 1)

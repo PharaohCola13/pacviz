@@ -2,7 +2,7 @@
 % Please edit documentation in R/util.r
 \name{linMap}
 \alias{linMap}
-\title{Pac-Man SVM}
+\title{Linear map}
 \usage{
 linMap(x, i, f)
 }
@@ -14,10 +14,8 @@ linMap(x, i, f)
 \item{f}{Largest value}
 }
 \value{
-Pac-Man SVM
+A set of values spanning from i to f
 }
 \description{
 linear map
 }
-\keyword{machine-learning}
-\keyword{visualization}

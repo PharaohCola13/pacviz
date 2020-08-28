@@ -2,9 +2,18 @@
 % Please edit documentation in R/lsvm.r
 \name{lsvm}
 \alias{lsvm}
-\title{Pac-Man SVM}
+\title{Linear SVM with decision hyperplane and support vectors}
 \usage{
-lsvm(x, y, l, title, train_size = 0.7, rand_state = sample(1:2^15, 1))
+lsvm(
+  x,
+  y,
+  l,
+  title,
+  xaxis,
+  yaxis,
+  train_size = 0.7,
+  rand_state = sample(1:2^15, 1)
+)
 }
 \arguments{
 \item{x, y}{Numeric data}
@@ -13,17 +22,17 @@ lsvm(x, y, l, title, train_size = 0.7, rand_state = sample(1:2^15, 1))
 
 \item{title}{Figure title}
 
+\item{xaxis, yaxis}{Vector with the first entry being the axis label and the second entry being units}
+
 \item{train_size}{Fraction of total data that the SVM will train on}
 
 \item{rand_state}{Value of the random state used to set the seed}
 }
 \value{
-Pac-Man SVM
+Linear SVM plot
 }
 \description{
-A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+Generates a Linear Support Vector Machine and draws the decision hyperplane and support vectors
 }
 \keyword{machine-learning}
 \keyword{visualization}

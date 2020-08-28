@@ -8,8 +8,7 @@ pac.resid(
   x,
   y,
   title,
-  unit,
-  axis_label,
+  taxis,
   model = lm(y ~ x, data = data.frame(x, y)),
   color1 = "gold",
   standardize = FALSE
@@ -20,9 +19,7 @@ pac.resid(
 
 \item{title}{Figure title}
 
-\item{unit}{String to define units on the angular axis (For temperature measurements use 'degC' or 'degF')}
-
-\item{axis_label}{Angular axis label}
+\item{taxis}{Vector with the first entry being the axis label and the second entry being units}
 
 \item{model}{An object for which the extraction of model residuals is meaningful.}
 

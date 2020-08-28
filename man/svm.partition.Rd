@@ -2,7 +2,7 @@
 % Please edit documentation in R/util.r
 \name{svm.partition}
 \alias{svm.partition}
-\title{Pac-Man SVM}
+\title{Machine learning data partition}
 \usage{
 \method{svm}{partition}(x, y, l, train_size = 0.7, rand_state = sample(1:2^15, 1))
 }
@@ -16,12 +16,10 @@
 \item{rand_state}{Value of the random state used to set the seed}
 }
 \value{
-Data Partition
+Two data frames and a list of indicies for the training set
 }
 \description{
-A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+A method of partitioning data between training and testing sets based on the fraction of data used for training
 }
+\keyword{data}
 \keyword{machine-learning}
-\keyword{visualization}

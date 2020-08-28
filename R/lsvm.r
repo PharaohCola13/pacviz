@@ -1,23 +1,22 @@
-#' @title Pac-Man SVM
+#' @title Linear SVM with decision hyperplane and support vectors
 #'
-#' @description A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-#' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+#' @description Generates a Linear Support Vector Machine and draws the decision hyperplane and support vectors
 #' @param x,y Numeric data
 #' @param l Numeric labels data
 #' @param title Figure title
 #' @param train_size Fraction of total data that the SVM will train on
 #' @param rand_state Value of the random state used to set the seed
-#' @return Pac-Man SVM
+#' @param xaxis,yaxis Vector with the first entry being the axis label and the second entry being units
+#' @return Linear SVM plot
 #' @keywords machine-learning visualization
 #' @import plotrix
 #' @importFrom graphics par text mtext rect abline plot
 #' @importFrom stats coef resid predict median
 #' @importFrom e1071 svm
 #' @export
-lsvm <- function(x,y,l, title, train_size=0.7, rand_state=sample(1:2^15, 1)) {
+lsvm <- function(x,y,l, title, xaxis, yaxis, train_size=0.7, rand_state=sample(1:2^15, 1)) {
 
-    pre       <- pacviz::svm.partition(x,y,l, train_size, rand_state)
+    pre       <- svm.partition(x,y,l, train_size, rand_state)
     train     <- pre$train
     test      <- pre$test
     train_idx <- pre$train_idx
@@ -37,34 +36,34 @@ lsvm <- function(x,y,l, title, train_size=0.7, rand_state=sample(1:2^15, 1)) {
 }
 #' @title Pac-Man SVM
 #'
-#' @description A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-#' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+#' @description A Pac-Man style SVM. (Under Development)
 #' @param x,y Numeric data
 #' @param l Numeric labels data
 #' @param title Figure title
-#' @param axis_label Label for the axis
+#' @param taxis Vector with the first entry being the axis label and the second entry being units
 #' @param train_size Fraction of total data that the SVM will train on
 #' @param rand_state Value of the random state used to set the seed
-#' @return Pac-Man SVM
+#' @return Pac-Man SVM plot
 #' @keywords machine-learning visualization
 #' @import plotrix
 #' @importFrom graphics par text mtext rect abline plot
 #' @importFrom stats coef resid predict median
 #' @importFrom e1071 svm
 #' @export
-pac.lsvm <- function(x,y,l, title, axis_label, train_size=0.7, rand_state=sample(1:2^15, 1)) {
-  pre       <- pacviz::svm.partition(x,y,l, train_size, rand_state)
+pac.lsvm <- function(x,y,l, title, taxis, train_size=0.7, rand_state=sample(1:2^15, 1)) {
+  pre       <- svm.partition(x,y,l, train_size, rand_state)
   train     <- pre$train
   test      <- pre$test
   train_idx <- pre$train_idx
 
-  svmfit <- svm(x=train[1:2], y=train[3],type="C-classification", kernel="linear", scale=FALSE)
-  pred <- predict(svmfit, test[1:2])
-  cf <- coef(svmfit)
+  svmfit  <- svm(x=train[1:2], y=train[3],type="C-classification", kernel="linear", scale=FALSE)
+  pred    <- predict(svmfit, test[1:2])
+  cf      <- coef(svmfit)
 
-  t <- pacviz::linMap(x, 40, 320)
-  r <- pacviz::linMap(y,1, 0)
+  t <- linMap(x, 40, 320)
+  r <- linMap(y,1, 0)
+
+  tunit <- unit_format(taxis[2])
 
   # Angular axis label positions
   lp = seq.int(40, 320, length.out = 6)
@@ -72,7 +71,7 @@ pac.lsvm <- function(x,y,l, title, axis_label, train_size=0.7, rand_state=sample
   ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1), length.out = 6))
 
   db_x <- train[1]
-  db_t <- pacviz::rad2deg(atan(-cf[1]/cf[3] * db_x - cf[2]/cf[3])/db_x)
+  db_t <- rad2deg(atan(-cf[1]/cf[3] * db_x - cf[2]/cf[3])/db_x)
   db_r <- -cf[1]/cf[3] * db_t - cf[2]/cf[3]
 
   s1_r <- -(cf[1] + 1)/cf[3] * db_t - cf[2]/cf[3]
@@ -96,14 +95,14 @@ pac.lsvm <- function(x,y,l, title, axis_label, train_size=0.7, rand_state=sample
   }
   # Generates angular labels (w/ units) and axis title
   for (i in 1:6) {
-      text <- paste(sprintf("%.2f", round(ln[i], 1)), " ", sep="")
+      text <- paste(sprintf("%.2f", round(ln[i], 1)), tunit, sep="")
       if (is.element(i, 1:3)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = TRUE)
       } else if (is.element(i, 4:6)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = FALSE)
       }
   }
-  arctext(axis_label, middle = 0, radius = divs[4] + n, clockwise = TRUE)
+  arctext(taxis[1], middle = 0, radius = divs[4] + n, clockwise = TRUE)
 
   for (i in 4:1) {
       if ((i%%2) == 0) {

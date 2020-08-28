@@ -9,7 +9,7 @@ pac.lsvm(
   y,
   l,
   title,
-  axis_label,
+  taxis,
   train_size = 0.7,
   rand_state = sample(1:2^15, 1)
 )
@@ -21,19 +21,17 @@ pac.lsvm(
 
 \item{title}{Figure title}
 
-\item{axis_label}{Label for the axis}
+\item{taxis}{Vector with the first entry being the axis label and the second entry being units}
 
 \item{train_size}{Fraction of total data that the SVM will train on}
 
 \item{rand_state}{Value of the random state used to set the seed}
 }
 \value{
-Pac-Man SVM
+Pac-Man SVM plot
 }
 \description{
-A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+A Pac-Man style SVM. (Under Development)
 }
 \keyword{machine-learning}
 \keyword{visualization}

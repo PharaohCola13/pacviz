@@ -2,7 +2,7 @@
 % Please edit documentation in R/util.r
 \name{deg2rad}
 \alias{deg2rad}
-\title{Pac-Man SVM}
+\title{Degree angle conversion}
 \usage{
 deg2rad(deg)
 }
@@ -10,10 +10,9 @@ deg2rad(deg)
 \item{deg}{Angle in degrees}
 }
 \value{
-Pac-Man SVM
+Angle in radians
 }
 \description{
 Conversion between degrees and radians
 }
-\keyword{machine-learning}
-\keyword{visualization}
+\keyword{conversion}

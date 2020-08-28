@@ -6,7 +6,8 @@ Authors@R:
            family = "Riley",
            role = c("aut", "cre"),
            email = "spencer.riley@student.nmt.edu")
-Description: TBA
+Description: Provides a broad-view perspective on data via
+    linear mapping of data onto a radial coordinate system.
 License: MIT + file LICENSE
 Depends:
     R (>= 3.3.3)
