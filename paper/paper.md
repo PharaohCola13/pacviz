@@ -1,5 +1,5 @@
 ---
-title: Broad Scope Visualization of Regression Analysis using pacres
+title: Broad Scope Visualization of Regression Analysis using pacviz
 tags:
   - R
   - regression

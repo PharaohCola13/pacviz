@@ -1,8 +1,6 @@
 #' @title Pac-Man SVM
 #'
-#' @description A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-#' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+#' @description A
 #' @param x,y Numeric data
 #' @param title Figure title
 #' @param taxis,raxis Vector with the first entry being the axis label and the second entry being units
@@ -18,10 +16,15 @@
 #' pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 #' @export
 pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
+  # Revert margin settings back to default after exit
+  oldpar <- par(mar = par()$mar, oma = par()$oma)
+  on.exit(par(oldpar))
 
+  # Maping function for the angular axis
   t <- linMap(x, 40, 320)
+  # Mapping function for the radial axis
   r <- linMap(y, 1, 0)
-
+  # gets formatted units for the angular axis
   tunit <- unit_format(taxis[2])
 
   # Angular axis label positions
@@ -72,15 +75,3 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
           radial.lim = c(0, divs[4]), add = TRUE)
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
 }
-#
-# library(plotrix)
-# data("cars")
-# x <- rnorm(20, mean=0, sd=10)
-# y <- rnorm(20, mean=0, sd=10)
-# plot(cars$dist, cars$speed)
-# abline(h=12.5)
-# abline(h=16.67)
-# abline(h=25.0)
-# pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
-# plot(x,y)
-# pac.plot(x,y, 'Example 1', c("xaxislabel", "m"), c("yaxislabel", "m/s"))

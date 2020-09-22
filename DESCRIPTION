@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "spencer.riley@student.nmt.edu")
 Description: Provides a broad-view perspective on data via
-    linear mapping of data onto a radial coordinate system.
+    linear mapping of data onto a radial coordinate system. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 License: MIT + file LICENSE
 Depends:
     R (>= 3.3.3)
