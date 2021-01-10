@@ -93,11 +93,11 @@ pac.lsvm <- function(x,y,l, title, taxis, train_size=0.7, rand_state=sample(1:2^
 # fname <- read.table(file="https://raw.githubusercontent.com/physicsgoddess1972/Precipitable-Water-Model/master/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
 # #
 # # suppressPackageStartupMessages(library(circlize))
-# library(e1071); library(plotrix)
+# library(e1071); library(plotrix); library(pacviz)
 # x <- fname[,2]
 # y <- fname[,3]
 #
 # l <- fname[,5]
-# lsvm(x,y, l, "Function Test", rand_state=1)
+# # lsvm(x,y, l, "Function Test", rand_state=1)
 # pac.lsvm(x,y, l, "Function Test", "Axis Label", rand_state=1)
 # warnings()

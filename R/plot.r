@@ -49,14 +49,14 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   }
   # Generates angular labels (w/ units) and axis title
   for (i in 1:6) {
-      text <- paste(sprintf("%.2f", round(ln[i], 1)), tunit$unit, sep="")
+      text <- sprintf("%.2f", round(ln[i], 1))
       if (is.element(i, 1:3)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = TRUE)
       } else if (is.element(i, 4:6)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = FALSE)
       }
   }
-  arctext(taxis[1], middle = 0, radius = divs[4] + n, clockwise = TRUE)
+  arctext(paste(taxis[1], paste(tunit$unit, "]", sep=""), sep=" ["), middle = 0, radius = divs[4] + n, clockwise = TRUE)
 
   for (i in 4:1) {
       if ((i%%2) == 0) {
@@ -65,13 +65,18 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
           color <- "White"
       }
       draw.circle(0, 0, radius = abs(divs[i]), col = color)
-      rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
-      text(rlab, 0, srt=0, labels = bquote(.(round(divl[i + 1], 2)) * .(raxis[2])))
     }
-  text(x=divs[median(4:1) + 1] - (2.5*n), y=par("usr")[1] + 0.62 * diff(par("usr")[1:2]), labels = raxis[1], srt = 40)
-  polar.plot(c(0, divs[4]), c(40, 40), lwd = 1, rp.type = "l", line.col = "black",
-        radial.lim = c(0, divs[4]), add = TRUE)
-  polar.plot(c(0, divs[4]), c(320,320), lwd = 1, rp.type = "l", line.col = "black",
-          radial.lim = c(0, divs[4]), add = TRUE)
+  draw.sector(40, -40, col="white")
+  for (i in 4:1){
+    rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
+    text(rlab, 0, srt=0, labels = round(divl[i + 1], 2))
+    draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
+  }
+  draw.sector(-38, -40, rou1=0.333, rou2=0.333)
+  draw.sector(40, 38, rou1=0.666, rou2=0.666)
+  draw.sector(-38, -40, rou1=0.666, rou2=0.666)
+
+  text(mean(c(abs(divs[2 + 1]), abs(divs[2]))), 0.1, srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
+  draw.sector(0, 360, rou1=)
 }

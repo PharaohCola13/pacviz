@@ -15,6 +15,14 @@
 #' @importFrom graphics par text mtext rect abline plot
 #' @importFrom stats coef lm nls resid predict sigma rstandard median
 #' @importFrom utils packageDescription
+#' @examples
+#' data("cars")
+#' x <- cars$dist
+#' y <- cars$speed
+#' pac.resid(x,y, 'Example 2',
+#'             c("Temperature",'degC'),
+#'             color1="lightblue",
+#'             standardize=TRUE)
 #' @export
 pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,y)), color1 = "gold", standardize = FALSE) {
     # Revert margin settings back to default after exit
@@ -54,14 +62,14 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
     }
     # Generates angular labels (w/ units) and axis title
     for (i in 1:6) {
-				text <- paste(sprintf("%.2f", round(ln[i], 1)), tunit$unit, sep="")
+				text <- sprintf("%.2f", round(ln[i], 1))
         if (is.element(i, 1:3)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
         } else if (is.element(i, 4:6)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
         }
     }
-    arctext(taxis[1], middle = 0, radius = divs[6] + n, clockwise = TRUE)
+    arctext(paste(taxis[1], paste(tunit$unit, "]", sep=""), sep=" ["), middle = 0, radius = divs[6] + n, clockwise = TRUE)
 
     # Draws the circles and the labels
     for (i in 6:1) {
@@ -71,23 +79,26 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
             color <- "White"
         }
         draw.circle(0, 0, radius = divs[i], col = color)
-        rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
-        text(rlab, 0, labels = bquote(.(divs[i + 1] * 2) * sigma))
+    }
+    draw.sector(40, -40, rou1=divs[6], col="white")
+    for (i in 6:1){
+      rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
+      text(rlab, 0, srt=0, labels = bquote(.(divs[i + 1] * 2) * sigma))
+      draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
+      draw.sector(-38, -40, rou1=divs[i], rou2=divs[i])
     }
     # Draws the label space
     polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd = 1, rp.type = "p", line.col = "black",
         add = TRUE)
     polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd = 1, rp.type = "p", line.col = "black",
         add = TRUE)
+
     # Plots the data
     polar.plot(residual, t, rp.type = "s", point.col = "black", point.symbols = 16,
         radial.lim = c(0, divs[6]), add = TRUE)
-    if (divs[6] > 1) {
-        draw.sector(start.degree = 320, end.degree = 40, rou1 = 0.5, rou2 = 0.5,
-            lty = "dashed", border = "Black")
-    }
 
     # Representation of the residual standard deivation
+    text(mean(c(abs(divs[3 + 1]), abs(divs[3]))), 0.25, srt=0, labels="Residual Values")
     mtext(c(parse(text = sprintf("sigma == %.3f*%s", sigma(model), tunit$unit_box))), at = par("usr")[1] +0.05 * diff(par("usr")[1:2]))
     rect(par("usr")[1] - 0.05 * diff(par("usr")[1:2]), -(par("usr")[1] - 0.05 * diff(par("usr")[1:2])),
         par("usr")[1] + 0.15 * diff(par("usr")[1:2]), -(par("usr")[1] + 0.01 * diff(par("usr")[1:2])),
