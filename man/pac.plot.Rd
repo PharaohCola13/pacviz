@@ -19,9 +19,7 @@ pac.plot(x, y, title, taxis, raxis, color1 = "gold")
 Pac-Man SVM
 }
 \description{
-A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
-radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+A
 }
 \examples{
 # Generic Pac-Man residual

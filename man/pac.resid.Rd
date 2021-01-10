@@ -35,5 +35,14 @@ A visualization technique in R for regression analysis results, specifically res
 radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
 most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 }
+\examples{
+data("cars")
+x <- cars$dist
+y <- cars$speed
+pac.resid(x,y, 'Example 2',
+            c("Temperature",'degC'),
+            color1="lightblue",
+            standardize=TRUE)
+}
 \keyword{regression}
 \keyword{visualization}

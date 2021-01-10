@@ -3,7 +3,6 @@
 S3method(svm,partition)
 export(deg2rad)
 export(linMap)
-export(lsvm)
 export(pac.lsvm)
 export(pac.plot)
 export(pac.resid)
