@@ -1,6 +1,7 @@
 # Introduction to the package
 
-TBA
+Provides a broad-view perspective on data via
+    linear mapping of data onto a radial coordinate system. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
 
 
 The functions that are enclosed in this package include:

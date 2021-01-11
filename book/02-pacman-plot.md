@@ -26,5 +26,15 @@ data("cars")
 x <- cars$dist
 y <- cars$speed
 
+pac.plot(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 ```
-The units associated with each of the plots are not accurate, they simply demonstrate the capabilities of the function to use a variety of inputs.
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{examples/figures/fig4} 
+
+}
+
+\caption{Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.}(\#fig:unnamed-chunk-1)
+\end{figure}
+\newpage

@@ -1,7 +1,7 @@
 ---
 title: "pacviz"
 author: "Spencer Riley"
-date: "last revised on 2020-08-24"
+date: "last revised on 2021-01-11"
 site: bookdown::gitbook
 favicon: "favicon.ico"
 documentclass: book
@@ -66,10 +66,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.6.1  magrittr_1.5    bookdown_0.20   htmltools_0.5.0
-##  [5] tools_3.6.1     yaml_2.2.1      stringi_1.4.6   rmarkdown_2.3  
-##  [9] knitr_1.29      stringr_1.4.0   digest_0.6.25   xfun_0.16      
-## [13] rlang_0.4.7     evaluate_0.14
+##  [1] compiler_3.6.1  magrittr_2.0.1  bookdown_0.21   htmltools_0.5.0
+##  [5] tools_3.6.1     yaml_2.2.1      stringi_1.5.3   rmarkdown_2.6  
+##  [9] knitr_1.30      stringr_1.4.0   digest_0.6.27   xfun_0.19      
+## [13] rlang_0.4.9     evaluate_0.14
 ```
 
 ## The Author {-}
