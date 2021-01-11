@@ -26,10 +26,10 @@ pac.resid(cars$dist,cars$speed, 'Example 3',
 pdf("examples/figures/fig4.pdf")
 pac.plot(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 
-fname       <- read.table(file="../Precipitable-Water-Model/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
-pdf("examples/figures/fig5.pdf")
-# pac.lsvm(fname[,2],fname[,3], fname[,5], "Example 1")
-lsvm(fname[,2],fname[,3], fname[,5], "Function Test")
+# fname       <- read.table(file="../Precipitable-Water-Model/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
+# pdf("examples/figures/fig5.pdf")
+# # pac.lsvm(fname[,2],fname[,3], fname[,5], "Example 1")
+# lsvm(fname[,2],fname[,3], fname[,5], "Function Test")
 
 # Pac-Man residual using alternate color, with unitless values, and empty axis label
 # pdf("./figures/fig4.pdf")

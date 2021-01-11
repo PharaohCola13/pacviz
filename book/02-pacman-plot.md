@@ -35,6 +35,6 @@ pac.plot(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"
 
 }
 
-\caption{Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.}(\#fig:unnamed-chunk-1)
+\caption{Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.}(\#fig:figure4)
 \end{figure}
 \newpage

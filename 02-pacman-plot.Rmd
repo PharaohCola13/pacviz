@@ -29,7 +29,7 @@ y <- cars$speed
 pac.plot(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 ```
 
-```{r, out.width="100%", fig.cap='Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.', dev='svglite', fig.align='center', echo=FALSE}
+```{r, figure4, out.width="100%", fig.cap='Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.', dev='svglite', fig.align='center', echo=FALSE}
 knitr::include_graphics("examples/figures/fig4.png")
 ```
 \newpage
