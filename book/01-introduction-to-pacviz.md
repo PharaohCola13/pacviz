@@ -1,9 +1,11 @@
 # Introduction to the package
 
 Provides a broad-view perspective on data via
-    linear mapping of data onto a radial coordinate system. See the pacviz
-    documentation page for more information:
-    https://pharaohcola13.github.io/pacviz/book/
+    linear mapping of data onto a radial coordinate system. The package
+    contains functions to visualize the residual values of linear
+    regression and Cartesian data in the defined radial scheme. See the
+    pacviz documentation page for more information:
+    <https://pharaohcola13.github.io/pacviz/book/>.
 
 
 The functions that are enclosed in this package include:

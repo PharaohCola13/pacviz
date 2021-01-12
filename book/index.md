@@ -34,7 +34,7 @@ output:
 
 This is the documentation of the
 [**pacviz**](https://cran.r-project.org/package=pacviz) package. Examples
-in the book are generated under version 1.0.0.0.
+in the book are generated under version 1.0.0.2.
 
 <img src="images/cover.png" style="width:500px;border:2px solid black;" />
 
