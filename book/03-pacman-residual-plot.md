@@ -26,7 +26,8 @@ As we have discussed above,
 pac.resid(
   x,y,
   title,
-  c(axis_label, unit),
+  unit,
+  axis_label,
   model = lm(y ~ x, data = data.frame(x, y)),
   color1 = "gold",
   standardize = FALSE
@@ -52,8 +53,8 @@ In the below snippet, we use
 ```R
 # Generic Pac-Man residual
 pac.resid(x,y, 'Example 1',
-            c('Axis Label', 'm/s'))
-
+            'm/s',
+            'Axis Label')
 ```
 
 \begin{figure}
@@ -62,7 +63,7 @@ pac.resid(x,y, 'Example 1',
 
 }
 
-\caption{Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings.}(\#fig:resexample1)
+\caption{Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.}(\#fig:example1)
 \end{figure}
 \newpage
 
@@ -71,7 +72,8 @@ pac.resid(x,y, 'Example 1',
 # Pac-Man residual using alternate color,
 # residual standardization, and temperature units
 pac.resid(x,y, 'Example 2',
-            c("Temperature",'degC'),
+            'degC',
+            "Temperature",
             color1="lightblue",
             standardize=TRUE)
 ```
@@ -82,7 +84,7 @@ pac.resid(x,y, 'Example 2',
 
 }
 
-\caption{Graphical result of Example 2.}(\#fig:resexample2)
+\caption{Graphical result of Example 2.}(\#fig:unnamed-chunk-1)
 \end{figure}
 \newpage
 
@@ -91,16 +93,16 @@ pac.resid(x,y, 'Example 2',
 # Pac-Man residual using alternate color,
 # a quadratic model, and a UTF8 character for units
 pac.resid(x,y, 'Example 3',
-            c("Distance","\uc5"),
+            "\uc5",
+            "Distance",
             model=lm(y~poly(x,2)),
             color1="darksalmon")
 ```
-
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{examples/figures/fig3} 
 
 }
 
-\caption{Graphical result of Example 3.}(\#fig:resexample3)
+\caption{Graphical result of Example 3.}(\#fig:unnamed-chunk-2)
 \end{figure}
