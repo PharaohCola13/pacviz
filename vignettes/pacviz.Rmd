@@ -1,7 +1,4 @@
-
-<!--
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{pacviz vignette}
--->
 
 Please go to https://pharaohcola13.github.io/pacviz/book for the full vignette.

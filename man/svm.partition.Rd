@@ -4,7 +4,7 @@
 \alias{svm.partition}
 \title{Machine learning data partition}
 \usage{
-svm.partition(x, y, l, train_size = 0.7, rand_state = sample(1:2^15, 1))
+\method{svm}{partition}(x, y, l, train_size = 0.7, rand_state = sample(1:2^15, 1))
 }
 \arguments{
 \item{x, y}{Numeric data}
