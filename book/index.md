@@ -48,7 +48,7 @@ sessionInfo()
 ```
 ## R version 3.6.1 (2019-07-05)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Linux Mint 20
+## Running under: Linux Mint 20.1
 ## 
 ## Matrix products: default
 ## BLAS:   /usr/local/lib/R/lib/libRblas.so
@@ -73,3 +73,4 @@ sessionInfo()
 ```
 
 ## The Author {-}
+The author and maintainer of this package is [Spencer Riley](https://pharaohcola13.github.io).

@@ -191,12 +191,11 @@ As we have discussed above,</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pac-man-residual-plot.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pac.resid</span>(</span>
 <span id="cb7-2"><a href="pac-man-residual-plot.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  x,y,</span>
 <span id="cb7-3"><a href="pac-man-residual-plot.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  title,</span>
-<span id="cb7-4"><a href="pac-man-residual-plot.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  unit,</span>
-<span id="cb7-5"><a href="pac-man-residual-plot.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  axis_label,</span>
-<span id="cb7-6"><a href="pac-man-residual-plot.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y)),</span>
-<span id="cb7-7"><a href="pac-man-residual-plot.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">color1 =</span> <span class="st">&quot;gold&quot;</span>,</span>
-<span id="cb7-8"><a href="pac-man-residual-plot.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">standardize =</span> <span class="cn">FALSE</span></span>
-<span id="cb7-9"><a href="pac-man-residual-plot.html#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb7-4"><a href="pac-man-residual-plot.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(axis_label, unit),</span>
+<span id="cb7-5"><a href="pac-man-residual-plot.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> <span class="fu">data.frame</span>(x, y)),</span>
+<span id="cb7-6"><a href="pac-man-residual-plot.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color1 =</span> <span class="st">&quot;gold&quot;</span>,</span>
+<span id="cb7-7"><a href="pac-man-residual-plot.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">standardize =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-8"><a href="pac-man-residual-plot.html#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="examples-1" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Examples</h2>
@@ -211,12 +210,11 @@ function will be:</p>
 <p>In the below snippet, we use</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="pac-man-residual-plot.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generic Pac-Man residual</span></span>
 <span id="cb9-2"><a href="pac-man-residual-plot.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pac.resid</span>(x,y, <span class="st">&#39;Example 1&#39;</span>,</span>
-<span id="cb9-3"><a href="pac-man-residual-plot.html#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;m/s&#39;</span>,</span>
-<span id="cb9-4"><a href="pac-man-residual-plot.html#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Axis Label&#39;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:example1"></span>
-<img src="examples/figures/fig1.png" alt="Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string." width="100%" />
+<span id="cb9-3"><a href="pac-man-residual-plot.html#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">&#39;Axis Label&#39;</span>, <span class="st">&#39;m/s&#39;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:resexample1"></span>
+<img src="examples/figures/fig1.png" alt="Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings." width="100%" />
 <p class="caption">
-Figure 3.1: Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings. Make note that if you want a space between the numerical value and the units to add a space in the character string.
+Figure 3.1: Graphical result of Example 1. We can see that the units are attached to the residual standard deviation as well as the angular axis markings.
 </p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -226,11 +224,10 @@ Figure 3.1: Graphical result of Example 1. We can see that the units are attache
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pac-man-residual-plot.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pac-Man residual using alternate color,</span></span>
 <span id="cb10-2"><a href="pac-man-residual-plot.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># residual standardization, and temperature units</span></span>
 <span id="cb10-3"><a href="pac-man-residual-plot.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pac.resid</span>(x,y, <span class="st">&#39;Example 2&#39;</span>,</span>
-<span id="cb10-4"><a href="pac-man-residual-plot.html#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;degC&#39;</span>,</span>
-<span id="cb10-5"><a href="pac-man-residual-plot.html#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Temperature&quot;</span>,</span>
-<span id="cb10-6"><a href="pac-man-residual-plot.html#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">color1=</span><span class="st">&quot;lightblue&quot;</span>,</span>
-<span id="cb10-7"><a href="pac-man-residual-plot.html#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">standardize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<span id="cb10-4"><a href="pac-man-residual-plot.html#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">&quot;Temperature&quot;</span>,<span class="st">&#39;degC&#39;</span>),</span>
+<span id="cb10-5"><a href="pac-man-residual-plot.html#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color1=</span><span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb10-6"><a href="pac-man-residual-plot.html#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">standardize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:resexample2"></span>
 <img src="examples/figures/fig2.png" alt="Graphical result of Example 2." width="100%" />
 <p class="caption">
 Figure 3.2: Graphical result of Example 2.
@@ -243,11 +240,10 @@ Figure 3.2: Graphical result of Example 2.
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pac-man-residual-plot.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pac-Man residual using alternate color,</span></span>
 <span id="cb11-2"><a href="pac-man-residual-plot.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a quadratic model, and a UTF8 character for units</span></span>
 <span id="cb11-3"><a href="pac-man-residual-plot.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pac.resid</span>(x,y, <span class="st">&#39;Example 3&#39;</span>,</span>
-<span id="cb11-4"><a href="pac-man-residual-plot.html#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;\uc5&quot;</span>,</span>
-<span id="cb11-5"><a href="pac-man-residual-plot.html#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Distance&quot;</span>,</span>
-<span id="cb11-6"><a href="pac-man-residual-plot.html#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">model=</span><span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">2</span>)),</span>
-<span id="cb11-7"><a href="pac-man-residual-plot.html#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">color1=</span><span class="st">&quot;darksalmon&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<span id="cb11-4"><a href="pac-man-residual-plot.html#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="st">&quot;Distance&quot;</span>,<span class="st">&quot;\uc5&quot;</span>),</span>
+<span id="cb11-5"><a href="pac-man-residual-plot.html#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">model=</span><span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">2</span>)),</span>
+<span id="cb11-6"><a href="pac-man-residual-plot.html#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">color1=</span><span class="st">&quot;darksalmon&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:resexample3"></span>
 <img src="examples/figures/fig3.png" alt="Graphical result of Example 3." width="100%" />
 <p class="caption">
 Figure 3.3: Graphical result of Example 3.

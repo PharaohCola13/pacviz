@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="introduction-to-the-package.html"/>
-<link rel="next" href="pac-man-residual-plot.html"/>
+<link rel="next" href="releases.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,21 +131,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="2.2" data-path="pac-man-plot.html"><a href="pac-man-plot.html#usage"><i class="fa fa-check"></i><b>2.2</b> Usage</a></li>
 <li class="chapter" data-level="2.3" data-path="pac-man-plot.html"><a href="pac-man-plot.html#examples"><i class="fa fa-check"></i><b>2.3</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html"><i class="fa fa-check"></i><b>3</b> Pac-Man Residual Plot</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#description-1"><i class="fa fa-check"></i><b>3.1</b> Description</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#formalism"><i class="fa fa-check"></i><b>3.1.1</b> Formalism</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#usage-1"><i class="fa fa-check"></i><b>3.2</b> Usage</a></li>
-<li class="chapter" data-level="3.3" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#examples-1"><i class="fa fa-check"></i><b>3.3</b> Examples</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-1"><i class="fa fa-check"></i><b>3.3.1</b> Example 1</a></li>
-<li class="chapter" data-level="3.3.2" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-2"><i class="fa fa-check"></i><b>3.3.2</b> Example 2</a></li>
-<li class="chapter" data-level="3.3.3" data-path="pac-man-residual-plot.html"><a href="pac-man-residual-plot.html#example-3"><i class="fa fa-check"></i><b>3.3.3</b> Example 3</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="releases.html"><a href="releases.html"><i class="fa fa-check"></i><b>4</b> Releases</a>
+<li class="chapter" data-level="3" data-path="releases.html"><a href="releases.html"><i class="fa fa-check"></i><b>3</b> Releases</a>
 <ul>
 <li><a href="releases.html#v1.0-blinky">V1.0 <em>Blinky</em></a></li>
 </ul></li>
@@ -194,7 +180,7 @@ function will be:</p>
 <span id="cb6-3"><a href="pac-man-plot.html#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed</span>
 <span id="cb6-4"><a href="pac-man-plot.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="pac-man-plot.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pac.plot</span>(cars<span class="sc">$</span>speed,cars<span class="sc">$</span>dist, <span class="st">&#39;Example 1&#39;</span>, <span class="fu">c</span>(<span class="st">&quot;Distance&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;Speed&quot;</span>, <span class="st">&quot;m/s&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:figure4"></span>
+<div class="figure" style="text-align: center"><span id="fig:plotexample1"></span>
 <img src="examples/figures/fig4.png" alt="Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized." width="100%" />
 <p class="caption">
 Figure 2.1: Graphical result of Example 1. A basic example of how the relationship between the speed and distance of the car can be visualized.
@@ -210,7 +196,7 @@ Figure 2.1: Graphical result of Example 1. A basic example of how the relationsh
         </div>
       </div>
 <a href="introduction-to-the-package.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pac-man-residual-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="releases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -262,20 +248,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

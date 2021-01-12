@@ -45,7 +45,7 @@ See the pacviz documentation page for more information:
 
 The functions that are enclosed in this package include:
 
-  - `pacman`
+  - `pacviz`
 
 <div id="ch003.xhtml#installation-guide" class="section level2">
 

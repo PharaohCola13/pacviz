@@ -45,3 +45,4 @@ sessionInfo()
 ```
 
 ## The Author {-}
+The author and maintainer of this package is [Spencer Riley](https://pharaohcola13.github.io).

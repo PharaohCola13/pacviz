@@ -13,7 +13,6 @@ The functions that are enclosed in this package include:
 - `pac.plot`
 - `pac.resid`
 - `pac.lsvm` *(In development)*
-- `lsvm`
 - `svm.partition`
 
 ## Installation Guide
