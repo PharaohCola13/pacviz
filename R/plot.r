@@ -76,7 +76,7 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   draw.sector(40, 38, rou1=0.666, rou2=0.666)
   draw.sector(-38, -40, rou1=0.666, rou2=0.666)
 
-  text(mean(c(abs(divs[2 + 1]), abs(divs[2]))), 0.1, srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
+  text(mean(c(abs(divs[2 + 1]), abs(divs[2]))),par("usr")[1] + 0.55 * diff(par("usr")[1:2]), srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
   draw.sector(0, 360, rou1=)
 }
