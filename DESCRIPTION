@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Spencer",
            family = "Riley",
            role = c("aut", "cre"),
-           email = "spencer.riley@student.nmt.edu")
+           email = "spencerriley620@gmail.com")
 Description: Provides a broad-view perspective on data via
     linear mapping of data onto a radial coordinate system. The package
     contains functions to visualize the residual values of linear
