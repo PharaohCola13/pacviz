@@ -8,20 +8,27 @@ Provides a broad-view perspective on data via
     <https://spencerriley.me/pacviz/book/>.
 
 
-The functions that are enclosed in this package include:
+The primary functions that are enclosed in this package include:
 
 - `pac.plot`
 - `pac.resid`
 - `pac.lsvm` *(In development)*
+
+Some secondary functions include:
+
 - `svm.partition`
+- `deg2rad`
+- `rad2deg`
+- `linMap`
+
 
 ## Installation Guide
-For the most up-to-date version of the package, install it directly from GitHub.
+For the most up-to-date version of the package, install the package directly from GitHub.
 
 ```R
 devtools::install_github("PharaohCola13/pacviz")
 ```
-Through CRAN
+For offical releases, install the package through CRAN
 ```R
 install.package('pacviz')
 ```
