@@ -45,7 +45,7 @@ deg2rad <- function(deg) {(deg * pi) / (180)}
 
 #' @title Linear map
 #'
-#' @description linear map
+#' @description A function that will map a range of values to a different set of values.
 #' @param x Range of values to be mapped
 #' @param i Lowest value
 #' @param f Largest value
@@ -55,7 +55,7 @@ linMap  <- function(x,i, f) {(x - min(x))/max(x - min(x)) * (i - f) + f}
 
 #' @title Unit formatting
 #'
-#' @description Converts unit inputs into a format that can be displayed
+#' @description Converts unit inputs into a format that can be displayed. Support is restricted to `degC`, `degF`.
 #' @param unit Unit input
 #' @return A list of formatted units
 #' @export

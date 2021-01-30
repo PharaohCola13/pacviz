@@ -1,6 +1,7 @@
-#' @title Pac-Man SVM
+#' @title Pac-Man plotting function
 #'
-#' @description A
+#' @description A method of plotting traditional Cartesian data, based on a restricted
+#' radial coordinate system, while preserving the information.
 #' @param x,y Numeric data
 #' @param title Figure title
 #' @param taxis,raxis Vector with the first entry being the axis label and the second entry being units
@@ -11,7 +12,7 @@
 #' @importFrom graphics par text mtext rect abline plot
 #' @importFrom stats coef lm nls resid predict sigma rstandard median
 #' @examples
-#' # Generic Pac-Man residual
+#' # Generic Pac-Man plot
 #' data("cars")
 #' pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 #' @export

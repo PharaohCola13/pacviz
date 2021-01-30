@@ -1,20 +1,20 @@
 Package: pacviz
 Title: Pac-Man Visualization Package
-Version: 1.0.0.2
+Version: 1.0.1
 Authors@R:
     person(given = "Spencer",
            family = "Riley",
            role = c("aut", "cre"),
-           email = "spencerriley620@gmail.com")
+           email = "spencer.riley@student.nmt.edu")
 Description: Provides a broad-view perspective on data via
     linear mapping of data onto a radial coordinate system. The package
     contains functions to visualize the residual values of linear
     regression and Cartesian data in the defined radial scheme. See the
-    pacviz documentation page for more information:
-    <https://pharaohcola13.github.io/pacviz/book/>.
+    'pacviz' documentation page for more information:
+    <https://spencerriley.me/pacviz/book/>.
 License: MIT + file LICENSE
 Depends:
-    R (>= 3.3.3)
+    R (>= 4.0.0)
 Imports:
     circlize,
     e1071,
@@ -24,7 +24,7 @@ Imports:
     utils
 Suggests:
     knitr,
-    rmarkdown
+    markdown
 VignetteBuilder:
     knitr
 Encoding: UTF-8

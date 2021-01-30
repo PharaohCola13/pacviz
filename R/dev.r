@@ -15,6 +15,10 @@
 #' @importFrom e1071 svm
 #' @export
 pac.lsvm <- function(x,y,l, title, taxis, train_size=0.7, rand_state=sample(1:2^15, 1)) {
+  # Revert margin settings back to default after exit
+  oldpar <- par(mar = par()$mar, oma = par()$oma)
+  on.exit(par(oldpar))
+
   pre       <- svm.partition(x,y,l, train_size, rand_state)
   train     <- pre$train
   test      <- pre$test
@@ -89,15 +93,3 @@ pac.lsvm <- function(x,y,l, title, taxis, train_size=0.7, rand_state=sample(1:2^
   #     lty = "dashed", border = "Black", col=color1)
   polar.plot(r,t, rp.type = "s", point.col=ifelse(l[1:length(l)]==sort(unique(train[3])[,1])[1], "blue", "red"), point.symbols=16, add=TRUE)
 }
-
-# fname <- read.table(file="https://raw.githubusercontent.com/physicsgoddess1972/Precipitable-Water-Model/master/data/ml/ml_data.csv", sep=",", header=TRUE, strip.white=TRUE)
-# #
-# # suppressPackageStartupMessages(library(circlize))
-# library(e1071); library(plotrix); library(pacviz)
-# x <- fname[,2]
-# y <- fname[,3]
-#
-# l <- fname[,5]
-# # lsvm(x,y, l, "Function Test", rand_state=1)
-# pac.lsvm(x,y, l, "Function Test", "Axis Label", rand_state=1)
-# warnings()

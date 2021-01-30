@@ -2,7 +2,7 @@
 #'
 #' @description A visualization technique in R for regression analysis results, specifically residual values, based on a restricted
 #' radial coordinate system. It provides a broad view perspective on the performance of regression models, and supports
-#' most model inputs. See the pacviz documentation page for more information: https://pharaohcola13.github.io/pacviz/book/
+#' most model inputs.
 #' @param x,y Numeric data
 #' @param title Figure title
 #' @param taxis Vector with the first entry being the axis label and the second entry being units
@@ -83,7 +83,7 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
     draw.sector(40, -40, rou1=divs[6], col="white")
     for (i in 6:1){
       rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
-      text(rlab, 0, srt=0, labels = bquote(.(divs[i + 1] * 2) * sigma))
+      text(rlab, 0, srt=0, labels = bquote(.(divs[i + 1]) * sigma))
       draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
       draw.sector(-38, -40, rou1=divs[i], rou2=divs[i])
     }
