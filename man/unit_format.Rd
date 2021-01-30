@@ -13,5 +13,5 @@ unit_format(unit)
 A list of formatted units
 }
 \description{
-Converts unit inputs into a format that can be displayed
+Converts unit inputs into a format that can be displayed. Support is restricted to `degC`, `degF`.
 }

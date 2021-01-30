@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.r
 \name{pac.plot}
 \alias{pac.plot}
-\title{Pac-Man SVM}
+\title{Pac-Man plotting function}
 \usage{
 pac.plot(x, y, title, taxis, raxis, color1 = "gold")
 }
@@ -19,10 +19,11 @@ pac.plot(x, y, title, taxis, raxis, color1 = "gold")
 Pac-Man SVM
 }
 \description{
-A
+A method of plotting traditional Cartesian data, based on a restricted
+radial coordinate system, while preserving the information.
 }
 \examples{
-# Generic Pac-Man residual
+# Generic Pac-Man plot
 data("cars")
 pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 }

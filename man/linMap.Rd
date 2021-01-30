@@ -17,5 +17,5 @@ linMap(x, i, f)
 A set of values spanning from i to f
 }
 \description{
-linear map
+A function that will map a range of values to a different set of values.
 }
