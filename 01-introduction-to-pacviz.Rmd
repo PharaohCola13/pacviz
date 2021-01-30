@@ -16,7 +16,7 @@ For the most up-to-date version of the package, install it directly from GitHub.
 ```R
 devtools::install_github("PharaohCola13/pacviz")
 ```
-Through CRAN (Not yet available)
+Through CRAN
 ```R
 install.package('pacviz')
 ```

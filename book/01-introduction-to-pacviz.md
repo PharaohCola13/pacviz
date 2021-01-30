@@ -4,8 +4,8 @@ Provides a broad-view perspective on data via
     linear mapping of data onto a radial coordinate system. The package
     contains functions to visualize the residual values of linear
     regression and Cartesian data in the defined radial scheme. See the
-    pacviz documentation page for more information:
-    <https://pharaohcola13.github.io/pacviz/book/>.
+    'pacviz' documentation page for more information:
+    <https://spencerriley.me/pacviz/book/>.
 
 
 The functions that are enclosed in this package include:
@@ -21,13 +21,13 @@ For the most up-to-date version of the package, install it directly from GitHub.
 ```R
 devtools::install_github("PharaohCola13/pacviz")
 ```
-Through CRAN (Not yet available)
+Through CRAN
 ```R
 install.package('pacviz')
 ```
 
 ## Package Dependencies
-R (>= 3.3.3)
+R (>= 4.0.0)
 
 Packages: circlize, e1071, graphics, plotrix, stats, utils
 

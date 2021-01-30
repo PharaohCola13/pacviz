@@ -1,7 +1,7 @@
 ---
 title: "pacviz"
 author: "Spencer Riley"
-date: "last revised on 2021-01-12"
+date: "last revised on 2021-01-30"
 site: bookdown::gitbook
 favicon: "favicon.ico"
 documentclass: book
@@ -34,7 +34,7 @@ output:
 
 This is the documentation of the
 [**pacviz**](https://cran.r-project.org/package=pacviz) package. Examples
-in the book are generated under version 1.0.0.2.
+in the book are generated under version 1.0.0.5.
 
 <img src="images/cover.png" style="width:500px;border:2px solid black;" />
 
@@ -51,8 +51,8 @@ sessionInfo()
 ## Running under: Linux Mint 20.1
 ## 
 ## Matrix products: default
-## BLAS:   /usr/local/lib/R/lib/libRblas.so
-## LAPACK: /usr/local/lib/R/lib/libRlapack.so
+## BLAS:   /opt/R-4.0.3/lib/libRblas.so
+## LAPACK: /opt/R-4.0.3/lib/libRlapack.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -66,10 +66,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.0.3  magrittr_2.0.1  bookdown_0.21   htmltools_0.5.1
-##  [5] tools_4.0.3     yaml_2.2.1      stringi_1.5.3   rmarkdown_2.6  
-##  [9] knitr_1.30      stringr_1.4.0   digest_0.6.27   xfun_0.20      
-## [13] rlang_0.4.10    evaluate_0.14
+##  [1] compiler_4.0.3    magrittr_2.0.1    bookdown_0.21     htmltools_0.5.1.1
+##  [5] tools_4.0.3       yaml_2.2.1        stringi_1.5.3     rmarkdown_2.6    
+##  [9] knitr_1.30        stringr_1.4.0     digest_0.6.27     xfun_0.20        
+## [13] rlang_0.4.10      evaluate_0.14
 ```
 
 ## The Author {-}

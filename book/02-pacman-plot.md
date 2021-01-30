@@ -10,10 +10,8 @@ As we have discussed above,
 pac.plot(
   x,y,
   title,
-  xaxislabel,
-  yaxislabel,
-  xunits,
-  yunit,
+  c(taxislabel, tunits),
+  c(raxislabel, runits),
   color1 = "gold",
 )
 ```

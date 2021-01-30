@@ -26,8 +26,7 @@ As we have discussed above,
 pac.resid(
   x,y,
   title,
-  unit,
-  axis_label,
+  c(taxislabel, tunits),
   model = lm(y ~ x, data = data.frame(x, y)),
   color1 = "gold",
   standardize = FALSE
@@ -53,8 +52,7 @@ In the below snippet, we use
 ```R
 # Generic Pac-Man residual
 pac.resid(x,y, 'Example 1',
-            'm/s',
-            'Axis Label')
+            c('Axis Label', 'm/s'))
 ```
 
 \begin{figure}
@@ -72,8 +70,7 @@ pac.resid(x,y, 'Example 1',
 # Pac-Man residual using alternate color,
 # residual standardization, and temperature units
 pac.resid(x,y, 'Example 2',
-            'degC',
-            "Temperature",
+            c("Temperature", 'degC'),
             color1="lightblue",
             standardize=TRUE)
 ```
@@ -93,8 +90,7 @@ pac.resid(x,y, 'Example 2',
 # Pac-Man residual using alternate color,
 # a quadratic model, and a UTF8 character for units
 pac.resid(x,y, 'Example 3',
-            "\uc5",
-            "Distance",
+            c("Distance","\uc5"),
             model=lm(y~poly(x,2)),
             color1="darksalmon")
 ```
