@@ -109,14 +109,14 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
         par("usr")[1] + 0.15 * diff(par("usr")[1:2]), -(par("usr")[1] + 0.01 * diff(par("usr")[1:2])),
         border = 1)
 }
-library(pacviz)
-library(plotrix)
-library(circlize)
-
-data("cars")
-x <- cars$dist
-y <- cars$speed
-pac.resids(x,y, 'Example 2',
-            c("Temperature",'degC'),
-            color1="lightblue",
-            standardize=TRUE)
+# library(pacviz)
+# library(plotrix)
+# library(circlize)
+#
+# data("cars")
+# x <- cars$dist
+# y <- cars$speed
+# pac.resids(x,y, 'Example 2',
+#             c("Temperature",'degC'),
+#             color1="lightblue",
+#             standardize=TRUE)
