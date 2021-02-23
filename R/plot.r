@@ -37,24 +37,26 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   divs  <- seq(round(min(abs(r), na.rm = TRUE), 0), round(max(abs(r), na.rm = TRUE), 0), len = 6)
 
   n     <- abs(divs[6]/10)
+
+  m <- 12
   # Plots the residual against an angular position
   par(oma = c(0, 0, 3, 0), cex = 0.9)
   polar.plot(0, labels = "", show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
   title(paste("\n\n", title, sep = ""), outer = TRUE)
   # Generates 'tick marks' for angular axis
   ## Major tick marks
-  for (i in seq(1, length(lp), by=2)){
+  for (i in seq(1,length(lp), length.out=m)){
     polar.plot(c(0, divs[6] + n/2), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
   }
   ## Minor tick marks
-  for (i in union(seq(1,length(lp)),seq(1,length(lp),by=2))) {
+  for (i in seq(1, length(lp))) {
       polar.plot(c(0, divs[6] + n/4), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
   }
 
   # Generates angular labels
-  for (i in seq(1,length(lp),by=2)) {
+  for (i in seq.int(1,length(lp),length.out=m)) {
       text <- sprintf("%.2f", round(ln[i], 1))
-      if (is.element(i, 1:length(lp)/2)) {
+      if (i <= round(length(lp)/2, 0)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
       } else{
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
@@ -89,10 +91,10 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
 # library(circlize)
 #
 # data("cars")
-# # x <- cars$dist
-# # y <- cars$speed
-# # pac.resid(x,y, 'Example 2',
-# #             c("Temperature",'degC'),
-# #             color1="lightblue",
-# #             standardize=TRUE)
+# # # x <- cars$dist
+# # # y <- cars$speed
+# # # pac.resid(x,y, 'Example 2',
+# # #             c("Temperature",'degC'),
+# # #             color1="lightblue",
+# # #             standardize=TRUE)
 # pac.plots(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
