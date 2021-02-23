@@ -72,3 +72,27 @@ unit_format <- function(unit) {
   }
   return(list(unit=unit, unit_box=unit_box))
 }
+
+# #' @title Trendline
+# #'
+# #' @description Converts unit inputs into a format that can be displayed. Support is restricted to `degC`, `degF`.
+# #' @param unit Unit input
+# #' @return A list of formatted units
+# #' @export
+# trendline <- function(x,y, model, n){
+#   # Finds and removes NaNed values from the dataset
+#   nans <- c(grep("NaN", y)); nans <- append(nans, grep("NaN", x))
+#   x <- x[-(nans)]; y <- y[-(nans)]
+#   # creates a uniform sequence of numbers that fit within the limits of x
+#   xmin 	<- min(x, na.rm=TRUE)
+#   xmax 	<- max(x, na.rm=TRUE)
+#   newx 	<- seq(xmin, xmax, length.out=length(x))
+#   # Non-linear model (exponential)
+#   ## Initial values are in fact the converged values
+#   model.0 <- lm(model, data=data.frame(x=x, y=y))
+#   start 	<- list()
+#   for (i in seq(1,length(n)){
+#     start <- append(start, n[i]=coef(model.0)[i])
+#   }
+#   model 	<- nls(log(y, base=exp(1))~a+x*b, data=data.frame(x=x, y=y), start=start)
+# }

@@ -16,7 +16,7 @@
 #' data("cars")
 #' pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 #' @export
-pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
+pac.plots <- function(x,y, title, taxis, raxis, color1 = "gold") {
   # Revert margin settings back to default after exit
   oldpar <- par(mar = par()$mar, oma = par()$oma)
   on.exit(par(oldpar))
@@ -27,57 +27,72 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   r <- linMap(y, 1, 0)
   # gets formatted units for the angular axis
   tunit <- unit_format(taxis[2])
-
   # Angular axis label positions
-  lp = seq.int(40, 320, length.out = 6)
+  lp = linMap(seq.int(min(x), max(x)), 40, 320)
   # Angular axis labels
-  ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1), length.out = 6))
+  ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1)))
 
-  rmax <- max(c(r), na.rm = TRUE)
-  rmin <- min(c(r), na.rm = TRUE)
   # 6 equal divisions
-  divl  <- seq(floor(min(c(y), na.rm = TRUE)), ceiling(max(c(y), na.rm = TRUE)), len = 4)
-  divs  <- seq(floor(min(c(abs(r)), na.rm = TRUE)), ceiling(max(c(abs(r)), na.rm = TRUE)), len = 4)
+  divl  <- seq(round(min(y, na.rm = TRUE), 0), round(max(y, na.rm = TRUE), 0), len = 6)
+  divs  <- seq(round(min(abs(r), na.rm = TRUE), 0), round(max(abs(r), na.rm = TRUE), 0), len = 6)
 
-  n     <- abs(divs[4]/10)
+  n     <- abs(divs[6]/10)
   # Plots the residual against an angular position
   par(oma = c(0, 0, 3, 0), cex = 0.9)
-  polar.plot(0, labels = "", radial.lim = c(0, divs[4]), show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
+  polar.plot(0, labels = "", show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
   title(paste("\n\n", title, sep = ""), outer = TRUE)
   # Generates 'tick marks' for angular axis
-  for (i in lp) {
-      polar.plot(c(0, divs[4] + n/2), c(i, i), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
+  ## Major tick marks
+  for (i in seq(1, length(lp), by=2)){
+    polar.plot(c(0, divs[6] + n/2), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
   }
-  # Generates angular labels (w/ units) and axis title
-  for (i in 1:6) {
+  ## Minor tick marks
+  for (i in union(seq(1,length(lp)),seq(1,length(lp),by=2))) {
+      polar.plot(c(0, divs[6] + n/4), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
+  }
+
+  # Generates angular labels
+  for (i in seq(1,length(lp),by=2)) {
       text <- sprintf("%.2f", round(ln[i], 1))
-      if (is.element(i, 1:3)) {
-          arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = TRUE)
-      } else if (is.element(i, 4:6)) {
-          arctext(text, middle = (lp[i] * pi)/(180), radius = divs[4] + n, clockwise = FALSE)
+      if (is.element(i, 1:length(lp)/2)) {
+          arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
+      } else{
+          arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = TRUE)
       }
   }
-  arctext(paste(taxis[1], paste(tunit$unit, "]", sep=""), sep=" ["), middle = 0, radius = divs[4] + n, clockwise = TRUE)
+  # Angular axis title  (w/ units)
+  arctext(paste(taxis[1], paste(tunit$unit, "]", sep=""), sep=" ["), middle = 0, radius = divs[6] + n, clockwise = TRUE)
 
-  for (i in 4:1) {
+  # Alternating Colors
+  for (i in 6:1) {
       if ((i%%2) == 0) {
-          color <- "gold"
+          color <- color1
       } else {
           color <- "White"
       }
       draw.circle(0, 0, radius = abs(divs[i]), col = color)
     }
+  # Creates region for axis space
   draw.sector(40, -40, col="white")
-  for (i in 4:1){
+  for (i in 6:1){
     rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
-    text(rlab, 0, srt=0, labels = round(divl[i + 1], 2))
-    draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
-  }
-  draw.sector(-38, -40, rou1=0.333, rou2=0.333)
-  draw.sector(40, 38, rou1=0.666, rou2=0.666)
-  draw.sector(-38, -40, rou1=0.666, rou2=0.666)
+    text(rlab, 0, srt=0, labels = divl[i + 1])
+    draw.sector(-1, -40, rou1=divs[i], rou2=divs[i])
 
-  text(mean(c(abs(divs[2 + 1]), abs(divs[2]))),par("usr")[1] + 0.55 * diff(par("usr")[1:2]), srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
+  }
+  text(mean(c(abs(divs[2 + 1]), abs(divs[4]))),par("usr")[1] + 0.55 * diff(par("usr")[1:2]), srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
   draw.sector(0, 360, rou1=)
 }
+library(pacviz)
+library(plotrix)
+library(circlize)
+
+data("cars")
+# x <- cars$dist
+# y <- cars$speed
+# pac.resid(x,y, 'Example 2',
+#             c("Temperature",'degC'),
+#             color1="lightblue",
+#             standardize=TRUE)
+pac.plots(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))

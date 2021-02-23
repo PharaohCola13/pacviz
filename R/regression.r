@@ -54,12 +54,18 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
 
     # Plots the residual against an angular position
     par(oma = c(0, 0, 3, 0), cex = 0.9)
-    polar.plot(0, labels = "", radial.lim = c(0, divs[6]), show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
+    polar.plot(0, labels = "", show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
     title(paste("\n\n", title, sep = ""), outer = TRUE)
     # Generates 'tick marks' for angular axis
-    for (i in lp) {
-        polar.plot(c(0, divs[6] + n/2), c(i, i), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
+    ## Major tick marks
+    for (i in seq(1, length(lp), by=2)){
+      polar.plot(c(0, divs[6] + n/2), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
     }
+    ## Minor tick marks
+    for (i in union(seq(1,length(lp)),seq(1,length(lp),by=2))) {
+        polar.plot(c(0, divs[6] + n/4), c(lp[i], lp[i]), lwd = 1, rp.type = "p", line.col = "Black",add = TRUE)
+    }
+
     # Generates angular labels (w/ units) and axis title
     for (i in 1:6) {
 				text <- sprintf("%.2f", round(ln[i], 1))
@@ -84,8 +90,10 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
     for (i in 6:1){
       rlab <- mean(c(abs(divs[i + 1]), abs(divs[i])))
       text(rlab, 0, srt=0, labels = bquote(.(divs[i + 1]) * sigma))
-      draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
-      draw.sector(-38, -40, rou1=divs[i], rou2=divs[i])
+      draw.sector(-1, -40, rou1=divs[i], rou2=divs[i])
+
+      # draw.sector(40, 38, rou1=divs[i], rou2=divs[i])
+      # draw.sector(-38, -40, rou1=divs[i], rou2=divs[i])
     }
     # Draws the label space
     polar.plot(c(0, divs[6]), c(min(t), min(t)), lwd = 1, rp.type = "p", line.col = "black",
