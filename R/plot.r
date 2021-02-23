@@ -16,7 +16,7 @@
 #' data("cars")
 #' pac.plot(cars$dist,cars$speed, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
 #' @export
-pac.plots <- function(x,y, title, taxis, raxis, color1 = "gold") {
+pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   # Revert margin settings back to default after exit
   oldpar <- par(mar = par()$mar, oma = par()$oma)
   on.exit(par(oldpar))
@@ -84,15 +84,15 @@ pac.plots <- function(x,y, title, taxis, raxis, color1 = "gold") {
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
   draw.sector(0, 360, rou1=)
 }
-library(pacviz)
-library(plotrix)
-library(circlize)
-
-data("cars")
-# x <- cars$dist
-# y <- cars$speed
-# pac.resid(x,y, 'Example 2',
-#             c("Temperature",'degC'),
-#             color1="lightblue",
-#             standardize=TRUE)
-pac.plots(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
+# library(pacviz)
+# library(plotrix)
+# library(circlize)
+#
+# data("cars")
+# # x <- cars$dist
+# # y <- cars$speed
+# # pac.resid(x,y, 'Example 2',
+# #             c("Temperature",'degC'),
+# #             color1="lightblue",
+# #             standardize=TRUE)
+# pac.plots(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
