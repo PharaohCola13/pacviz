@@ -84,15 +84,3 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   text(mean(c(abs(divs[2 + 1]), abs(divs[4]))),par("usr")[1] + 0.55 * diff(par("usr")[1:2]), srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
 }
-# library(pacviz)
-# library(plotrix)
-# library(circlize)
-#
-# data("cars")
-# # # x <- cars$dist
-# # # y <- cars$speed
-# # # pac.resid(x,y, 'Example 2',
-# # #             c("Temperature",'degC'),
-# # #             color1="lightblue",
-# # #             standardize=TRUE)
-# pac.plots(cars$speed,cars$dist, 'Example 1', c("Distance", "m"), c("Speed", "m/s"))
