@@ -20,21 +20,20 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   # Revert margin settings back to default after exit
   oldpar <- par(mar = par()$mar, oma = par()$oma)
   on.exit(par(oldpar))
-
-  # Maping function for the angular axis
+    # Maping function for the angular axis
   t <- linMap(x, 40, 320)
   # Mapping function for the radial axis
   r <- linMap(y, 1, 0)
   # gets formatted units for the angular axis
   tunit <- unit_format(taxis[2])
   # Angular axis label positions
-  lp = linMap(seq.int(min(x), max(x)), 40, 320)
+  lp = linMap(seq.int(min(x, na.rm=TRUE), max(x, na.rm=TRUE)), 40, 320)
   # Angular axis labels
-  ln = rev(seq.int(round(min(x, na.rm = TRUE), 1), round(max(x, na.rm = TRUE),1)))
+  ln = rev(seq.int(min(x, na.rm = TRUE), max(x, na.rm = TRUE),1))
 
   # 6 equal divisions
-  divl  <- seq(round(min(y, na.rm = TRUE), 0), round(max(y, na.rm = TRUE), 0), len = 6)
-  divs  <- seq(round(min(abs(r), na.rm = TRUE), 0), round(max(abs(r), na.rm = TRUE), 0), len = 6)
+  divl  <- seq.int(round(min(y, na.rm = TRUE), 1), round(max(y, na.rm = TRUE),1), length.out = 6)
+  divs  <- seq.int(round(min(abs(r), na.rm = TRUE), 1), round(max(abs(r), na.rm = TRUE),1), length.out = 6)
 
   n     <- abs(divs[6]/10)
 
@@ -55,7 +54,7 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
 
   # Generates angular labels
   for (i in seq.int(1,length(lp),length.out=m)) {
-      text <- sprintf("%.2f", round(ln[i], 1))
+      text <- sprintf("%.1f", round(ln[i], 1))
       if (i <= round(length(lp)/2, 0)) {
           arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
       } else{
@@ -84,7 +83,6 @@ pac.plot <- function(x,y, title, taxis, raxis, color1 = "gold") {
   }
   text(mean(c(abs(divs[2 + 1]), abs(divs[4]))),par("usr")[1] + 0.55 * diff(par("usr")[1:2]), srt=0, labels=paste(raxis[1], paste(raxis[2], "]", sep=""), sep=" ["))
   polar.plot(r,t, rp.type = "s", point.col="black", add=TRUE, point.symbol=16)
-  draw.sector(0, 360, rou1=)
 }
 # library(pacviz)
 # library(plotrix)

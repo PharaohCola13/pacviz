@@ -47,13 +47,12 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
     ln = rev(seq.int(min(x, na.rm = TRUE), max(x, na.rm = TRUE)))
 
     # 6 equal divisions
-    divl  <- seq(round(min(residual, na.rm = TRUE), 0), round(max(residual, na.rm = TRUE), 0), len = 6)
-    divs  <- seq(round(min(abs(r), na.rm = TRUE), 0), round(max(abs(r), na.rm = TRUE), 0), len = 6)
-
+    divl  <- seq.int(round(min(residual, na.rm = TRUE), 1), round(max(residual, na.rm = TRUE),1), length.out = 6)
+    divs  <- seq.int(round(min(abs(r), na.rm = TRUE), 1), round(max(abs(r), na.rm = TRUE),1), length.out = 6)
     n <- divs[6]/10
 
     # Plots the residual against an angular position
-    # par(oma = c(0, 0, 3, 0), cex = 0.9)
+    par(oma = c(0, 0, 3, 0), cex = 0.9)
     m = 12
     polar.plot(0, labels = "", show.grid = FALSE, show.grid.labels = FALSE,show.radial.grid = FALSE)
     title(paste("\n\n", title, sep = ""), outer = TRUE)
@@ -68,7 +67,7 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
     }
     # Generates angular labels (w/ units) and axis title
     for (i in seq.int(1,length(lp),length.out=m)) {
-        text <- sprintf("%.2f", round(ln[i], 1))
+        text <- sprintf("%.1f", round(ln[i], 1))
         if (i <= round(length(lp)/2,0)) {
             arctext(text, middle = (lp[i] * pi)/(180), radius = divs[6] + n, clockwise = FALSE)
         }else {
@@ -97,7 +96,6 @@ pac.resid <- function(x, y, title, taxis, model = lm(y ~ x, data = data.frame(x,
         add = TRUE)
     polar.plot(c(0, divs[6]), c(max(t), max(t)), lwd = 1, rp.type = "p", line.col = "black",
         add = TRUE)
-
     #Plots the data
     polar.plot(r, t, rp.type = "s", point.col = "black", point.symbols = 16,add = TRUE)
 
