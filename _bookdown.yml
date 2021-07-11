@@ -1,9 +1,9 @@
 new_session: yes
 
-book_filename: "pacviz-book"
+book_filename: "pacviz-docs"
 language:
   ui:
     chapter_name: "Chapter "
     
-output_dir: "book"
+output_dir: "docs"
 delete_merged_file: true

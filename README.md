@@ -18,7 +18,7 @@
 
 This is the documentation of the
 [**pacviz**](https://cran.r-project.org/package=pacviz) package.
-Examples in the book are generated under version 1.0.0.0.
+Examples in the book are generated under version 1.0.1.
 
 ![](media/file0.png)
 
