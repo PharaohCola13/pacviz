@@ -41,4 +41,9 @@ jobs:
           install.packages('devtools')
           devtools::build(manual = TRUE)
         shell: Rscript {0}
+      - name: Upload data artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: pacviz_tarball
+          path: ${{github.workspace}}/pacviz/pacviz_1.0.2.tar.gz
         
