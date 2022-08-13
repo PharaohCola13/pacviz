@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check and Build
         run: | 
-          install.package('devtools')
+          install.packages('devtools')
           devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)
           devtools::build(manual=TRUE, vignettes=TRUE)
         shell: Rscript {0}
