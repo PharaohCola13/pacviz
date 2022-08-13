@@ -5,7 +5,7 @@ Provides a broad-view perspective on data via
     contains functions to visualize the residual values of linear
     regression and Cartesian data in the defined radial scheme. See the
     'pacviz' documentation page for more information:
-    <https://spencerriley.me/pacviz/book/>.
+    <https://pacviz.sriley.dev>.
 
 
 The primary functions that are enclosed in this package include:
