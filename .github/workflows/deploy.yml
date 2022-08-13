@@ -16,9 +16,12 @@ jobs:
     name: pacviz updates
     steps:
       - uses: actions/checkout@v2
-      - run: | 
-          Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)"
-          Rscript -e "devtools::build(manual=TRUE, vignettes=TRUE)"
+      - name: Check and Build
+        run: | 
+          install.package('devtools')
+          devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)
+          devtools::build(manual=TRUE, vignettes=TRUE)
+        shell: Rscript {0}
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
