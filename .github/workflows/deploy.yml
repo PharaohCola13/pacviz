@@ -11,13 +11,16 @@ on:
 name: Update
 
 jobs:
-  update:
-    - uses: actions/checkout@v2
-     - run: | 
-        Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)"
-        Rscript -e "devtools::build(manual=TRUE, vignettes=TRUE)"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+  pacviz_update:
+    runs-on: ubuntu-latest
+    name: pacviz updates
+    steps:
+      - uses: actions/checkout@v2
+      - run: | 
+          Rscript -e "devtools::check(document=TRUE, manual=TRUE, cran=TRUE, vignettes=TRUE)"
+          Rscript -e "devtools::build(manual=TRUE, vignettes=TRUE)"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
