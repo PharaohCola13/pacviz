@@ -11,7 +11,7 @@ bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: PharaohCola13/pacviz
-url: 'https\://pharaohcola13.github.io/pacviz/book'
+url: 'https\://pacviz.sriley.dev'
 output:
   bookdown::gitbook:
     dev: svglite
@@ -45,4 +45,4 @@ sessionInfo()
 ```
 
 ## The Author {-}
-The author and maintainer of this package is [Spencer Riley](https://pharaohcola13.github.io).
+The author and maintainer of this package is [Spencer Riley](https://sriley.dev).
