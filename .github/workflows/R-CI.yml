@@ -41,8 +41,6 @@ jobs:
           args: 'c("--no-manual", "--as-cran")'
           error-on: '"error"'
           check-dir: '"check"'
-      - name: stage changed files
-        run: git add *
       - name: Build tarball
         run: |
           install.packages('devtools')
@@ -54,6 +52,8 @@ jobs:
             git config --local user.name "github-actions[bot]"
             git commit -m "Updating Package" -a
             git pull
+      - name: stage changed files
+        run: git add NAMESPACE /man
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
