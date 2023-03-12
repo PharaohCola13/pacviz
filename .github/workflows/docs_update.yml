@@ -1,7 +1,6 @@
 name: pacviz documentation updates
 
-on: 
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 
 jobs:
   pacviz-man:
