@@ -41,11 +41,19 @@ jobs:
           args: 'c("--no-manual", "--as-cran")'
           error-on: '"error"'
           check-dir: '"check"'
+      - name: stage changed files
+        run: git add *
       - name: Build tarball
         run: |
           install.packages('devtools')
           devtools::build(manual = TRUE)
         shell: Rscript {0}
+      - name: Commit files
+        run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "Updating Package" -a
+            git pull
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
