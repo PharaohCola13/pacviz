@@ -1,9 +1,9 @@
 # For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
-on: 
-  push:
-    paths:
-      - "R/*"
+on:
+  workflow_run:
+    workflows: ["pacviz documentation updates"]
+    types: [completed]  
   workflow_dispatch:
 
 name: R-CMD-check
@@ -35,11 +35,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-      - name: Update Documentation
-        run: |
-          install.packages('devtools')
-          devtools::document()
-        shell: Rscript {0}
       - uses: r-lib/actions/check-r-package@v2
         with:
           args: 'c("--no-manual", "--as-cran")'
@@ -50,19 +45,6 @@ jobs:
           install.packages('devtools')
           devtools::build(manual = TRUE)
         shell: Rscript {0}
-      - name: stage changed files
-        run: git add NAMESPACE man/
-      - name: Commit files
-        run: |
-            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git commit -m "Updating Package" -a
-            git pull
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
       - name: Upload data artifacts
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@master
