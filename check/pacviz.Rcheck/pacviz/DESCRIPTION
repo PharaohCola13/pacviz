@@ -20,7 +20,7 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-03-12 17:54:11 UTC; runneradmin
+Packaged: 2023-03-12 17:58:01 UTC; runner
 Author: Spencer Riley [aut, cre]
 Maintainer: Spencer Riley <academic@sriley.dev>
-Built: R 4.2.2; ; 2023-03-12 17:54:17 UTC; windows
+Built: R 4.2.2; ; 2023-03-12 17:58:16 UTC; unix
