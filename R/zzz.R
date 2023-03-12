@@ -4,7 +4,7 @@
     msg = paste0("========================================
 ", pkgname, " version ", 
         version, "
-Github page: https://github.com/PharaohCola13/pacviz
+Documentation page: https://pacviz.sriley.dev
 This message can be suppressed by:
   suppressPackageStartupMessages(library(pacviz))
 ========================================
