@@ -8,7 +8,7 @@
 #' @return Two data frames and a list of indicies for the training set
 #' @keywords machine-learning data
 #' @export
-svm.partition <- function(x,y,l, train_size=0.7, rand_state=sample(1:2^15, 1)){
+svmpartition <- function(x,y,l, train_size=0.7, rand_state=sample(1:2^15, 1)){
   set.seed(rand_state)
   train_idx <- sample(1:length(x), trunc(length(x)*train_size), replace=FALSE)
   test_idx  <- (1:length(x))[-(train_idx)]
