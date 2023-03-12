@@ -16,12 +16,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, any::devtools
+          cache: true
           needs: check
       - name: Update Documentation
-        run: |
-          install.packages('devtools')
-          devtools::document()
+        run: devtools::document()
         shell: Rscript {0}
       - name: stage changed files
         run: git add NAMESPACE man/
