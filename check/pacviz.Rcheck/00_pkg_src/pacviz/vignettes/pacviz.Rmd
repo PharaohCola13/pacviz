@@ -1,4 +1,0 @@
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{pacviz vignette}
-
-Please go to https://pacviz.sriley.dev for the full vignette.
