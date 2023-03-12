@@ -1,7 +1,7 @@
 Package: pacviz
 Title: Pac-Man Visualization Package
 Version: 1.0.2
-Authors@R:
+Authors@R: 
     person(given = "Spencer",
            family = "Riley",
            role = c("aut", "cre"),
@@ -13,20 +13,14 @@ Description: Provides a broad-view perspective on data via
     'pacviz' documentation page for more information:
     <https://pacviz.sriley.dev/>.
 License: MIT + file LICENSE
-Depends:
-    R (>= 4.0.0)
-Imports:
-    circlize,
-    e1071,
-    graphics,
-    plotrix,
-    stats,
-    utils
-Suggests:
-    knitr,
-    markdown
-VignetteBuilder:
-    knitr
+Depends: R (>= 4.0.0)
+Imports: circlize, e1071, graphics, plotrix, stats, utils
+Suggests: knitr, markdown
+VignetteBuilder: knitr
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.2.3
+NeedsCompilation: no
+Packaged: 2023-03-12 17:58:01 UTC; runner
+Author: Spencer Riley [aut, cre]
+Maintainer: Spencer Riley <academic@sriley.dev>
+Built: R 4.2.2; ; 2023-03-12 17:58:16 UTC; unix
