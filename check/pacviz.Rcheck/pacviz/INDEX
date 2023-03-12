@@ -1,7 +1,0 @@
-deg2rad                 Degree angle conversion
-linMap                  Linear map
-pac.partition           Machine learning data partition
-pac.plot                Pac-Man plotting function
-pac.resid               Pac-Man Residual Function
-rad2deg                 Radian angle conversion
-unit_format             Unit formatting
