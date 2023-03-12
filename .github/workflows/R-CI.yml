@@ -50,5 +50,5 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: pacviz_tarball
-          path: /home/runner/work/pacviz/pacviz_1.0.2.tar.gz
+          path: /home/runner/work/pacviz/pacviz_*.tar.gz
         
