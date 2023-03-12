@@ -31,6 +31,7 @@ jobs:
         run: |
           install.packages('devtools')
           devtools::document()
+        shell: Rscript {0}
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
