@@ -57,7 +57,7 @@ jobs:
             git commit -m "Updating Package" -a
             git pull
       - name: stage changed files
-        run: git add NAMESPACE /man
+        run: git add NAMESPACE man/
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
