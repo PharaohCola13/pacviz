@@ -1,6 +1,6 @@
 # For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 name: R-CMD-check
 
@@ -41,6 +41,11 @@ jobs:
           install.packages('devtools')
           devtools::build(manual = TRUE)
         shell: Rscript {0}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
       - name: Upload data artifacts
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@master
