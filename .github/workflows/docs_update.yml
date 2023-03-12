@@ -1,6 +1,10 @@
 name: pacviz documentation updates
 
-on: [push, workflow_dispatch]
+on: 
+  push: 
+    paths: 
+      - "R/*"
+  workflow_dispatch:
 
 jobs:
   pacviz-man:
