@@ -1,0 +1,38 @@
+# For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
+# https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
+on: 
+  push:
+    paths:
+      - "R/*"
+  workflow_dispatch:
+
+name: pacviz documentation updates
+
+jobs:
+  pacviz-man:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
+      - name: Update Documentation
+        run: |
+          install.packages('devtools')
+          devtools::document()
+        shell: Rscript {0}
+      - name: stage changed files
+        run: git add NAMESPACE man/
+      - name: Commit files
+        run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "Updating Package" -a
+            git pull
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
